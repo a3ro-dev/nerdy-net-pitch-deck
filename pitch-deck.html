@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nerdy Network — Pitch Deck</title>
+    <meta name="description"
+        content="The Private Execution Network for Gen Z Builders. Turning teenage builders into shipped products.">
+
+    <!-- Fonts: Clash Display (display) + Satoshi (body) from Fontshare -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600;700&f[]=satoshi@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ===========================================
+           CSS CUSTOM PROPERTIES — BOLD SIGNAL THEME
+           Confident, high-impact pitch deck aesthetic.
+           Change these to re-skin the entire deck.
+           =========================================== */
+        :root {
+            /* Colors — Nerdy Network brand palette */
+            --bg-primary: #121212;
+            --bg-gradient: linear-gradient(135deg, #121212 0%, #1a1f1e 50%, #121212 100%);
+            --bg-card: #1a1a1a;
+            --accent: hsl(175, 84%, 32%);
+            --accent-secondary: hsl(175, 84%, 40%);
+            --accent-glow: hsla(175, 84%, 32%, 0.25);
+            --accent-alt: hsl(86, 100%, 38%);
+            --accent-alt2: #20adee;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+
+            /* Typography — ALL use clamp() for responsive scaling */
+            --font-display: 'Clash Display', sans-serif;
+            --font-body: 'Satoshi', sans-serif;
+            --title-size: clamp(1.8rem, 5vw, 4.5rem);
+            --h2-size: clamp(1.4rem, 3.5vw, 2.8rem);
+            --h3-size: clamp(1rem, 2vw, 1.35rem);
+            --body-size: clamp(0.75rem, 1.3vw, 1.05rem);
+            --small-size: clamp(0.65rem, 1vw, 0.85rem);
+            --stat-size: clamp(1.5rem, 3.5vw, 2.8rem);
+
+            /* Spacing — scales with viewport */
+            --slide-padding: clamp(1.5rem, 4vw, 4rem);
+            --content-gap: clamp(0.75rem, 2vw, 1.5rem);
+            --element-gap: clamp(0.4rem, 1vw, 0.75rem);
+
+            /* Animation */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.6s;
+        }
+
+        /* ===========================================
+           RESET & BASE STYLES
+           =========================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            height: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===========================================
+           VIEWPORT FITTING: MANDATORY SLIDE STYLES
+           Each slide = exactly one viewport height.
+           overflow: hidden prevents ANY scrolling.
+           =========================================== */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding: var(--slide-padding);
+            background: var(--bg-gradient);
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-height: 100%;
+            overflow: hidden;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ===========================================
+           TYPOGRAPHY
+           =========================================== */
+        h1 {
+            font-family: var(--font-display);
+            font-size: var(--title-size);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: var(--h2-size);
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            margin-bottom: var(--content-gap);
+        }
+
+        h3 {
+            font-family: var(--font-body);
+            font-size: var(--h3-size);
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        p,
+        li {
+            font-size: var(--body-size);
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .small {
+            font-size: var(--small-size);
+        }
+
+        .label {
+            font-size: var(--small-size);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+        }
+
+        /* ===========================================
+           BOLD SIGNAL — SIGNATURE ELEMENTS
+           =========================================== */
+
+        /* Section number — top left of content slides */
+        .slide-number {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 7rem);
+            color: rgba(255, 255, 255, 0.04);
+            position: absolute;
+            top: var(--slide-padding);
+            left: var(--slide-padding);
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Accent card block — the signature Bold Signal focal element */
+        .accent-card {
+            background: var(--accent);
+            color: #1a1a1a;
+            padding: clamp(1rem, 2.5vw, 2rem);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .accent-card h3,
+        .accent-card p {
+            color: #1a1a1a;
+        }
+
+        .accent-card .label {
+            color: rgba(26, 26, 26, 0.6);
+        }
+
+        /* Dark cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: clamp(0.75rem, 1.5vw, 1.25rem);
+            max-width: min(90vw, 1000px);
+        }
+
+        .card:hover {
+            border-color: hsla(175, 84%, 32%, 0.3);
+            transition: border-color 0.3s ease;
+        }
+
+        /* Grid layout */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--content-gap);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--content-gap);
+        }
+
+        /* Stat emphasis */
+        .stat {
+            font-family: var(--font-display);
+            font-size: var(--stat-size);
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .stat-accent {
+            color: var(--accent);
+        }
+
+        /* Subtle gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Pill / Tag badge */
+        .pill {
+            display: inline-block;
+            padding: 0.25em 0.75em;
+            border-radius: 999px;
+            font-size: var(--small-size);
+            font-weight: 600;
+            background: var(--accent-glow);
+            color: var(--accent);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Fail/Win indicators */
+        .fail {
+            color: #f87171;
+        }
+
+        .win {
+            color: hsl(175, 84%, 42%);
+        }
+
+        /* Timeline line */
+        .timeline-bar {
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-alt));
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Divider */
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), transparent);
+            margin: var(--element-gap) 0;
+            border-radius: 1px;
+        }
+
+        /* ===========================================
+           ENTRANCE ANIMATIONS
+           Triggered by .visible class via IntersectionObserver
+           =========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger children */
+        .reveal:nth-child(1) {
+            transition-delay: 0.05s;
+        }
+
+        .reveal:nth-child(2) {
+            transition-delay: 0.12s;
+        }
+
+        .reveal:nth-child(3) {
+            transition-delay: 0.19s;
+        }
+
+        .reveal:nth-child(4) {
+            transition-delay: 0.26s;
+        }
+
+        .reveal:nth-child(5) {
+            transition-delay: 0.33s;
+        }
+
+        .reveal:nth-child(6) {
+            transition-delay: 0.40s;
+        }
+
+        /* Fade in from left */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal-left {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Scale in */
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal-scale {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ===========================================
+           NAVIGATION — Progress bar & dots
+           =========================================== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent), var(--accent-alt));
+            z-index: 1000;
+            transition: width 0.35s var(--ease-out-expo);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .nav-dots {
+            position: fixed;
+            right: clamp(0.75rem, 2vw, 1.5rem);
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .nav-dot.active {
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+            transform: scale(1.3);
+        }
+
+        .nav-dot:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: clamp(0.75rem, 2vw, 1.5rem);
+            left: clamp(0.75rem, 2vw, 1.5rem);
+            font-size: var(--small-size);
+            color: var(--text-muted);
+            z-index: 1000;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .keyboard-hint {
+            position: fixed;
+            bottom: clamp(0.75rem, 2vw, 1.5rem);
+            right: clamp(0.75rem, 2vw, 1.5rem);
+            font-size: var(--small-size);
+            color: var(--text-muted);
+            z-index: 1000;
+            opacity: 0.5;
+        }
+
+        /* ===========================================
+           RESPONSIVE BREAKPOINTS — Height-based
+           =========================================== */
+
+        /* Short screens (<700px height) */
+        @media (max-height: 700px) {
+            :root {
+                --slide-padding: clamp(0.75rem, 3vw, 2rem);
+                --content-gap: clamp(0.5rem, 1.5vw, 1rem);
+                --title-size: clamp(1.4rem, 4.5vw, 2.5rem);
+                --h2-size: clamp(1.1rem, 3vw, 1.8rem);
+                --stat-size: clamp(1.3rem, 3vw, 2rem);
+            }
+        }
+
+        /* Very short (<600px height) */
+        @media (max-height: 600px) {
+            :root {
+                --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+                --content-gap: clamp(0.35rem, 1vw, 0.75rem);
+                --title-size: clamp(1.2rem, 4vw, 2rem);
+                --body-size: clamp(0.7rem, 1.2vw, 0.9rem);
+            }
+
+            .nav-dots,
+            .keyboard-hint,
+            .slide-number {
+                display: none;
+            }
+        }
+
+        /* Extremely short — landscape phones (<500px) */
+        @media (max-height: 500px) {
+            :root {
+                --slide-padding: clamp(0.4rem, 2vw, 1rem);
+                --title-size: clamp(1rem, 3.5vw, 1.5rem);
+                --h2-size: clamp(0.9rem, 2.5vw, 1.25rem);
+                --body-size: clamp(0.65rem, 1vw, 0.8rem);
+            }
+        }
+
+        /* Narrow screens (<600px width) — stack grids */
+        @media (max-width: 600px) {
+            :root {
+                --title-size: clamp(1.5rem, 7vw, 2.5rem);
+            }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.2s !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* ===========================================
+           TITLE SLIDE — Special layout
+           =========================================== */
+        .title-slide {
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 80%, hsla(175, 84%, 32%, 0.08) 0%, transparent 60%),
+                var(--bg-gradient);
+        }
+
+        .title-slide .slide-content {
+            align-items: center;
+        }
+
+        /* CTA / CLOSING slide */
+        .closing-slide {
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 50%, hsla(175, 84%, 32%, 0.1) 0%, transparent 60%),
+                var(--bg-gradient);
+        }
+
+        .closing-slide .slide-content {
+            align-items: center;
+        }
+
+        /* ===========================================
+           UTILITY CLASSES
+           =========================================== */
+        .gap-sm {
+            gap: var(--element-gap);
+        }
+
+        .gap-md {
+            gap: var(--content-gap);
+        }
+
+        .mt-sm {
+            margin-top: var(--element-gap);
+        }
+
+        .mt-md {
+            margin-top: var(--content-gap);
+        }
+
+        .mb-sm {
+            margin-bottom: var(--element-gap);
+        }
+
+        .mb-md {
+            margin-bottom: var(--content-gap);
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .items-start {
+            align-items: flex-start;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        /* ===========================================
+           ICON STYLES — Lucide Icons
+           =========================================== */
+        .icon {
+            width: clamp(18px, 2vw, 24px);
+            height: clamp(18px, 2vw, 24px);
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .icon-lg {
+            width: clamp(22px, 2.5vw, 32px);
+            height: clamp(22px, 2.5vw, 32px);
+        }
+
+        .icon-accent {
+            color: var(--accent);
+        }
+
+        .icon-alt {
+            color: var(--accent-alt);
+        }
+
+        .icon-alt2 {
+            color: var(--accent-alt2);
+        }
+
+        .icon-muted {
+            color: var(--text-muted);
+        }
+
+        .card-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+
+        .accent-card .icon {
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation Dots (generated by JS) -->
+    <nav class="nav-dots" id="navDots" aria-label="Slide navigation"></nav>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter" id="slideCounter">1 / 19</div>
+
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint">↑↓ or Space</div>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 1: COVER
+         ═══════════════════════════════════════════ -->
+    <section class="slide title-slide" data-slide="0">
+        <div class="slide-content">
+            <div class="pill reveal" style="margin-bottom: var(--content-gap);">Execution Network</div>
+            <h1 class="reveal" style="margin-bottom: var(--element-gap);">Nerdy Network</h1>
+            <p class="reveal"
+                style="font-size: clamp(1rem, 2.2vw, 1.5rem); color: var(--text-secondary); margin-bottom: var(--element-gap);">
+                The Private Execution Network for Gen Z Builders
+            </p>
+            <p class="reveal" style="color: var(--text-muted);">
+                Turning teenage builders into shipped products
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 2: THE PROBLEM
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="1">
+        <span class="slide-number">01</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">The Problem</h2>
+            <p class="reveal"
+                style="font-size: clamp(0.95rem, 1.8vw, 1.3rem); color: var(--text-primary); margin-bottom: var(--content-gap);">
+                Gen Z is the most entrepreneurial generation — but they're building in broken environments.
+            </p>
+            <div class="grid-2 reveal">
+                <div class="accent-card">
+                    <p class="label">THE STAT</p>
+                    <p class="stat" style="color: #1a1a1a;">50%</p>
+                    <p style="margin-top:0.25em;">of Gen Z wants to start a business</p>
+                </div>
+                <div class="card">
+                    <p class="label">THE REALITY</p>
+                    <p style="color: var(--text-primary); font-weight: 700; font-size: var(--h3-size);">Most quit before
+                        they ship</p>
+                    <p class="mt-sm">No structured path. No accountability.</p>
+                </div>
+            </div>
+            <div class="reveal flex flex-col gap-sm mt-md" style="gap: var(--element-gap);">
+                <p><span class="fail">✕</span> Discord servers where ideas die in endless chat threads</p>
+                <p><span class="fail">✕</span> Content platforms optimized for consumption, not execution</p>
+                <p><span class="fail">✕</span> Learning communities with no forcing function to ship</p>
+                <p><span class="fail">✕</span> School incubators designed for MBAs, not high schoolers</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 3: THE SOLUTION
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="2">
+        <span class="slide-number">02</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">The Solution</h2>
+            <p class="reveal mb-md" style="font-size: clamp(0.85rem, 1.5vw, 1.15rem);">
+                Nerdy Network is the private execution system that turns builders into shipped products.
+            </p>
+            <div class="grid-2 reveal">
+                <div class="card" style="border-left: 3px solid var(--accent);">
+                    <h3 class="card-icon"><i data-lucide="zap" class="icon icon-accent"></i> Accountability Mechanics
+                    </h3>
+                    <p class="mt-sm">Public streaks force daily progress</p>
+                </div>
+                <div class="card" style="border-left: 3px solid var(--accent-secondary);">
+                    <h3 class="card-icon"><i data-lucide="flame" class="icon icon-accent"></i> Streak-Based Building
+                    </h3>
+                    <p class="mt-sm">Visible progress maintains motivation</p>
+                </div>
+                <div class="card" style="border-left: 3px solid var(--accent-alt);">
+                    <h3 class="card-icon"><i data-lucide="home" class="icon icon-alt"></i> House System</h3>
+                    <p class="mt-sm">Belonging and competition drive retention</p>
+                </div>
+                <div class="card" style="border-left: 3px solid var(--accent-alt2);">
+                    <h3 class="card-icon"><i data-lucide="bot" class="icon icon-alt2"></i> AI Team Matching</h3>
+                    <p class="mt-sm">Find compatible cofounders instantly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 4: PRODUCT ARCHITECTURE
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="3">
+        <span class="slide-number">03</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Product Architecture</h2>
+            <div class="flex flex-col gap-sm reveal" style="gap: var(--element-gap);">
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <div
+                        style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-secondary));display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
+                        1</div>
+                    <div>
+                        <h3>Invite-Only Pitch Rooms</h3>
+                        <p>Curated rooms where builders pitch to operators and accelerators</p>
+                    </div>
+                </div>
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <div
+                        style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-secondary));display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
+                        2</div>
+                    <div>
+                        <h3>Streak-Based Building</h3>
+                        <p>Public accountability with self-assigned deadlines</p>
+                    </div>
+                </div>
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <div
+                        style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-secondary));display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
+                        3</div>
+                    <div>
+                        <h3>Houses System</h3>
+                        <p>Belonging and competition drive retention</p>
+                    </div>
+                </div>
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <div
+                        style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-secondary));display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
+                        4</div>
+                    <div>
+                        <h3>AI Team Matching</h3>
+                        <p>Reduce founder friction with compatible cofounders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 5: USER JOURNEY
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="4">
+        <span class="slide-number">04</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">User Journey</h2>
+            <div class="flex flex-col gap-sm reveal" style="gap: var(--element-gap);">
+                <div class="card flex items-start" style="gap: var(--content-gap);">
+                    <div class="timeline-bar" style="min-height:100%;align-self:stretch;"></div>
+                    <div style="flex:1;">
+                        <p class="label">Week 1</p>
+                        <h3>Onboarding</h3>
+                        <p>Apply with active project proof · Get sorted into house · Set first streak goal</p>
+                    </div>
+                </div>
+                <div class="card flex items-start" style="gap: var(--content-gap);">
+                    <div class="timeline-bar" style="min-height:100%;align-self:stretch;"></div>
+                    <div style="flex:1;">
+                        <p class="label">Weeks 2–8</p>
+                        <h3>Execution Loop</h3>
+                        <p>Post daily updates · Maintain streaks · Build in public</p>
+                    </div>
+                </div>
+                <div class="card flex items-start" style="gap: var(--content-gap);">
+                    <div class="timeline-bar" style="min-height:100%;align-self:stretch;"></div>
+                    <div style="flex:1;">
+                        <p class="label">Weeks 8–12</p>
+                        <h3>Team Formation</h3>
+                        <p>Use AI matching · Validate fit · Lock in team</p>
+                    </div>
+                </div>
+                <div class="card flex items-start" style="gap: var(--content-gap);">
+                    <div class="timeline-bar" style="min-height:100%;align-self:stretch;"></div>
+                    <div style="flex:1;">
+                        <p class="label">Month 4+</p>
+                        <h3>Acceleration</h3>
+                        <p>Qualify for pitch rooms · Present to accelerators · Get direct intros</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 6: WHY NOW
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="5">
+        <span class="slide-number">05</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Why Now</h2>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <i data-lucide="rocket" class="icon icon-lg icon-accent" style="margin-bottom:0.4em;"></i>
+                    <h3>Gen Z Entrepreneurship</h3>
+                    <p class="mt-sm">50% want to start a business</p>
+                </div>
+                <div class="card">
+                    <i data-lucide="trending-up" class="icon icon-lg icon-alt" style="margin-bottom:0.4em;"></i>
+                    <h3>Hackathon Explosion</h3>
+                    <p class="mt-sm">75% undergraduate participation</p>
+                </div>
+                <div class="card">
+                    <i data-lucide="zap" class="icon icon-lg icon-alt2" style="margin-bottom:0.4em;"></i>
+                    <h3>Death of Passive Platforms</h3>
+                    <p class="mt-sm">Buildspace shut down 2024</p>
+                </div>
+                <div class="accent-card">
+                    <i data-lucide="target" class="icon icon-lg" style="margin-bottom:0.4em;"></i>
+                    <h3>Accelerator Pipeline Gap</h3>
+                    <p class="mt-sm">&lt;2% YC acceptance rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 7: MARKET OPPORTUNITY
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="6">
+        <span class="slide-number">06</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Market Opportunity</h2>
+            <div class="flex flex-col gap-sm reveal" style="gap: var(--content-gap);">
+                <div class="accent-card">
+                    <p class="label">TAM</p>
+                    <p class="stat" style="color:#1a1a1a;">$12.1B</p>
+                    <p>Global productivity app market growing 9.2% CAGR</p>
+                </div>
+                <div class="card" style="border-left: 3px solid var(--accent-alt);">
+                    <p class="label" style="color: var(--accent-alt);">SAM</p>
+                    <p class="stat">$2.8B</p>
+                    <p>Teen and college-age builders (ages 13–22)</p>
+                </div>
+                <div class="card" style="border-left: 3px solid var(--accent-alt2);">
+                    <p class="label" style="color: var(--accent-alt2);">SOM</p>
+                    <p class="stat">$280M</p>
+                    <p>Year 1–3: 150K users at $100 ARPU</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 8: TRACTION & VALIDATION
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="7">
+        <span class="slide-number">07</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Traction &amp; Validation</h2>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <p class="label">WAITLIST</p>
+                    <p class="stat stat-accent">500+</p>
+                    <p>Signups in 2 weeks · 78% completion rate</p>
+                </div>
+                <div class="card">
+                    <p class="label" style="color: var(--accent-alt);">BETA PILOT</p>
+                    <p class="stat stat-accent">68%</p>
+                    <p>Daily active rate · 8 teams formed</p>
+                </div>
+                <div class="card">
+                    <p class="label" style="color: var(--accent-alt2);">PARTNERSHIPS</p>
+                    <p class="stat">4</p>
+                    <p>Accelerator discussions · 12 committed mentors</p>
+                </div>
+                <div class="accent-card">
+                    <p class="label">VALIDATION</p>
+                    <p class="stat" style="color:#1a1a1a;">$100M</p>
+                    <p>Buildspace valuation proof · Market demand validated</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 9: ENGAGEMENT & RETENTION
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="8">
+        <span class="slide-number">08</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Engagement &amp; Retention</h2>
+            <div class="flex flex-col gap-sm reveal" style="gap: var(--content-gap);">
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <div style="flex-shrink:0;text-align:center;min-width:80px;">
+                        <p class="stat stat-accent">65%</p>
+                        <p class="small" style="color:var(--text-muted);">Day 7 retention</p>
+                    </div>
+                    <div>
+                        <h3>Streaks</h3>
+                        <p>Daily accountability creates habit formation</p>
+                    </div>
+                </div>
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <div style="flex-shrink:0;text-align:center;min-width:80px;">
+                        <p class="stat stat-accent">35%</p>
+                        <p class="small" style="color:var(--text-muted);">Session increase</p>
+                    </div>
+                    <div>
+                        <h3>Houses</h3>
+                        <p>Identity and belonging drive engagement</p>
+                    </div>
+                </div>
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <div style="flex-shrink:0;text-align:center;min-width:80px;">
+                        <p class="stat stat-accent">2.5x</p>
+                        <p class="small" style="color:var(--text-muted);">Referral multiplier</p>
+                    </div>
+                    <div>
+                        <h3>Network Effects</h3>
+                        <p>Metcalfe's Law compounds value</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 10: BUSINESS MODEL
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="9">
+        <span class="slide-number">09</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Business Model</h2>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <h3>Accelerator Partnerships</h3>
+                    <p class="stat stat-accent mt-sm">$320K</p>
+                    <p>Founder placements &amp; carry</p>
+                </div>
+                <div class="card">
+                    <h3>Sponsored Pitch Rooms</h3>
+                    <p class="stat stat-accent mt-sm">$200K</p>
+                    <p>Sponsor access to talent</p>
+                </div>
+                <div class="card">
+                    <h3>Premium Cohorts</h3>
+                    <p class="stat stat-accent mt-sm">$20K</p>
+                    <p>8-week intensives w/ coaching</p>
+                </div>
+                <div class="card">
+                    <h3>Talent Pipeline</h3>
+                    <p class="stat stat-accent mt-sm">$75K</p>
+                    <p>Early access for recruiters</p>
+                </div>
+            </div>
+            <div class="accent-card reveal mt-md" style="text-align:center;">
+                <p class="label">Year 1 Revenue Target</p>
+                <p class="stat" style="color:#1a1a1a;">$615K</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 11: GO-TO-MARKET
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="10">
+        <span class="slide-number">10</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Go-To-Market</h2>
+            <div class="flex flex-col gap-sm reveal" style="gap: var(--element-gap);">
+                <div class="card flex items-start" style="gap: var(--content-gap);">
+                    <div class="timeline-bar" style="align-self:stretch;"></div>
+                    <div style="flex:1;">
+                        <h3>Phase 1: Curated Launch</h3>
+                        <p>Months 1–3 · <span style="color:var(--accent);font-weight:600;">KPI: 65% weekly active</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card flex items-start" style="gap: var(--content-gap);">
+                    <div class="timeline-bar" style="align-self:stretch;"></div>
+                    <div style="flex:1;">
+                        <h3>Phase 2: Viral Expansion</h3>
+                        <p>Months 4–9 · <span style="color:var(--accent);font-weight:600;">KPI: 10K active
+                                builders</span></p>
+                    </div>
+                </div>
+                <div class="card flex items-start" style="gap: var(--content-gap);">
+                    <div class="timeline-bar" style="align-self:stretch;"></div>
+                    <div style="flex:1;">
+                        <h3>Phase 3: Accelerator Network</h3>
+                        <p>Months 10–18 · <span style="color:var(--accent);font-weight:600;">KPI: 60+ placements</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="accent-card flex items-start" style="gap: var(--content-gap);">
+                    <div style="flex:1;">
+                        <h3>Phase 4: Platform Dominance</h3>
+                        <p>Year 2+ · <strong>KPI: 100K+ builders</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 12: COMPETITIVE LANDSCAPE
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="11">
+        <span class="slide-number">11</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Competitive Landscape</h2>
+            <div class="flex flex-col gap-sm reveal" style="gap: var(--element-gap);">
+                <div class="card">
+                    <h3>Discord Communities</h3>
+                    <p><span class="fail">✕</span> No accountability, ideas die in threads</p>
+                    <p><span class="win">✓</span> Execution-driven with streaks &amp; public progress</p>
+                </div>
+                <div class="card">
+                    <h3>YC Startup School</h3>
+                    <p><span class="fail">✕</span> Built for company-stage, no team formation</p>
+                    <p><span class="win">✓</span> Teen-focused, gamified, AI matching</p>
+                </div>
+                <div class="card">
+                    <h3>Buildspace</h3>
+                    <p><span class="fail">✕</span> Passive engagement, shutdown 2024</p>
+                    <p><span class="win">✓</span> Retention mechanics, multi-generational networks</p>
+                </div>
+                <div class="card">
+                    <h3>Indie Hackers</h3>
+                    <p><span class="fail">✕</span> Revenue-focused, not teen-appropriate</p>
+                    <p><span class="win">✓</span> Execution-first, accelerator pipeline</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 13: OUR MOAT
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="12">
+        <span class="slide-number">12</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Our Moat</h2>
+            <div class="grid-3 reveal">
+                <div class="card" style="border-top:3px solid var(--accent);">
+                    <h3 class="card-icon"><i data-lucide="link" class="icon icon-accent"></i> Network Effects</h3>
+                    <p class="mt-sm">Supply &amp; demand flywheel multiplies value</p>
+                </div>
+                <div class="card" style="border-top:3px solid var(--accent-secondary);">
+                    <h3 class="card-icon"><i data-lucide="bar-chart-3" class="icon icon-accent"></i> Data Moat</h3>
+                    <p class="mt-sm">Unique shipping velocity &amp; collaboration data</p>
+                </div>
+                <div class="card" style="border-top:3px solid var(--accent-alt);">
+                    <h3 class="card-icon"><i data-lucide="home" class="icon icon-alt"></i> Cultural Moat</h3>
+                    <p class="mt-sm">House identity creates sticky belonging</p>
+                </div>
+                <div class="card" style="border-top:3px solid var(--accent-alt2);">
+                    <h3 class="card-icon"><i data-lucide="flame" class="icon icon-alt2"></i> Habit Moat</h3>
+                    <p class="mt-sm">Daily streaks become reflexive behavior</p>
+                </div>
+                <div class="card" style="border-top:3px solid var(--accent);">
+                    <h3 class="card-icon"><i data-lucide="trophy" class="icon icon-accent"></i> Brand Moat</h3>
+                    <p class="mt-sm">Become the standard path for serious builders</p>
+                </div>
+                <div class="card" style="border-top:3px solid var(--accent-secondary);">
+                    <h3 class="card-icon"><i data-lucide="crosshair" class="icon icon-accent"></i> Curation Moat</h3>
+                    <p class="mt-sm">Selective quality maintains flywheel</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 14: PARTNERSHIPS
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="13">
+        <span class="slide-number">13</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Partnerships</h2>
+            <p class="reveal label mb-md">Tier 1 Accelerators</p>
+            <div class="grid-2 reveal">
+                <div class="card text-center">
+                    <h3>Y Combinator</h3>
+                    <p class="mt-sm">In discussions</p>
+                </div>
+                <div class="card text-center">
+                    <h3>Techstars</h3>
+                    <p class="mt-sm">In discussions</p>
+                </div>
+                <div class="card text-center">
+                    <h3>On Deck</h3>
+                    <p class="mt-sm">In discussions</p>
+                </div>
+                <div class="card text-center">
+                    <h3>Neo</h3>
+                    <p class="mt-sm">In discussions</p>
+                </div>
+            </div>
+            <div class="reveal mt-md">
+                <p class="label" style="color: var(--accent-alt); margin-bottom: 0.5em;">Other Pipelines</p>
+                <p>Top 100 high schools &amp; universities · Tech company partnerships · Mentor network (12 committed)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 15: ROADMAP
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="14">
+        <span class="slide-number">14</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">Roadmap</h2>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <p class="label">Q1 2026</p>
+                    <p class="mt-sm">Curated launch of 200 builders · House system live · Streak mechanics · First 2
+                        pitch rooms</p>
+                </div>
+                <div class="card">
+                    <p class="label" style="color:var(--accent-alt);">Q2 2026</p>
+                    <p class="mt-sm">Invite system (viral) · AI team matching beta · 10 pitch rooms · Target: 2K users
+                    </p>
+                </div>
+                <div class="card">
+                    <p class="label" style="color:var(--accent-alt2);">Q3 2026</p>
+                    <p class="mt-sm">20 accelerator placements · Premium cohorts · International expansion · Target: 8K
+                        users</p>
+                </div>
+                <div class="accent-card">
+                    <p class="label">Q4 2026</p>
+                    <p class="mt-sm">15K active builders · 60 placements total · Mobile app · Alumni mentoring</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 16: OUR VISION
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="15">
+        <span class="slide-number">15</span>
+        <div class="slide-content text-center" style="align-items:center;">
+            <h2 class="reveal gradient-text">Our Vision</h2>
+            <p class="reveal"
+                style="font-size: clamp(0.95rem, 1.8vw, 1.35rem); color: var(--text-primary); margin-bottom: var(--content-gap); max-width: 700px;">
+                In 10 years, every major startup will trace its founding team back to Nerdy Network.
+            </p>
+            <div class="grid-2 reveal" style="max-width:800px;">
+                <div class="card text-center">
+                    <i data-lucide="eye" class="icon icon-lg icon-accent" style="margin: 0 auto 0.4em;"></i>
+                    <p>The reputation layer for execution velocity</p>
+                </div>
+                <div class="card text-center">
+                    <i data-lucide="users" class="icon icon-lg icon-alt" style="margin: 0 auto 0.4em;"></i>
+                    <p>The talent graph for early-stage founders</p>
+                </div>
+                <div class="card text-center">
+                    <i data-lucide="rocket" class="icon icon-lg icon-accent" style="margin: 0 auto 0.4em;"></i>
+                    <p>The default path to funded companies</p>
+                </div>
+                <div class="card text-center">
+                    <i data-lucide="flame" class="icon icon-lg icon-accent" style="margin: 0 auto 0.4em;"></i>
+                    <p>The cultural home for ambitious builders</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 17: THE TEAM
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="16">
+        <span class="slide-number">16</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">The Team</h2>
+            <div class="accent-card reveal mb-md">
+                <h3>Founder &amp; CEO</h3>
+                <p class="mt-sm">Lived the problem. Built communities. Understands Gen Z builders.</p>
+                <p class="mt-sm" style="color: rgba(26,26,26,0.7); font-weight: 600;">Previous: Accelerator experience ·
+                    Built: Creator communities · Why: Was a teenage builder</p>
+            </div>
+            <p class="reveal label mb-sm">Advisory &amp; Mentors</p>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <h3>Top Accelerator Partner</h3>
+                    <p>Early-stage capital access</p>
+                </div>
+                <div class="card">
+                    <h3>Successful Teen Founder</h3>
+                    <p>Built to exit at age 21</p>
+                </div>
+                <div class="card">
+                    <h3>EdTech Expert</h3>
+                    <p>Platform scaling experience</p>
+                </div>
+                <div class="card">
+                    <h3>Community Builder</h3>
+                    <p>100K+ scale track record</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 18: THE ASK
+         ═══════════════════════════════════════════ -->
+    <section class="slide" data-slide="17">
+        <span class="slide-number">17</span>
+        <div class="slide-content">
+            <h2 class="reveal gradient-text">The Ask</h2>
+            <div class="accent-card reveal mb-md" style="text-align:center;">
+                <p class="label">Seed Round</p>
+                <p class="stat" style="color:#1a1a1a;">$1.5M</p>
+            </div>
+            <div class="grid-2 reveal">
+                <div class="card">
+                    <p class="label">Product &amp; Engineering</p>
+                    <p class="stat stat-accent mt-sm">$600K</p>
+                    <p>40%</p>
+                </div>
+                <div class="card">
+                    <p class="label" style="color:var(--accent-alt);">Growth &amp; Community</p>
+                    <p class="stat stat-accent mt-sm">$450K</p>
+                    <p>30%</p>
+                </div>
+                <div class="card">
+                    <p class="label" style="color:var(--accent-alt2);">Operations</p>
+                    <p class="stat stat-accent mt-sm">$300K</p>
+                    <p>20%</p>
+                </div>
+                <div class="card">
+                    <p class="label" style="color:var(--accent-secondary);">Runway &amp; Reserve</p>
+                    <p class="stat stat-accent mt-sm">$150K</p>
+                    <p>10%</p>
+                </div>
+            </div>
+            <div class="card reveal mt-md" style="border-left:3px solid var(--accent-alt);">
+                <p class="label" style="color:var(--accent-alt);">18-Month Milestone</p>
+                <p>15K builders · 60 placements · $615K revenue · 45% D30 retention</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 19: CLOSING / CTA
+         ═══════════════════════════════════════════ -->
+    <section class="slide closing-slide" data-slide="18">
+        <div class="slide-content" style="align-items:center;">
+            <h2 class="reveal" style="font-size: var(--title-size);">Let's Build the<br><span class="gradient-text">Next
+                    Generation</span></h2>
+            <p class="reveal"
+                style="font-size: clamp(0.9rem, 1.6vw, 1.2rem); margin: var(--content-gap) 0; max-width: 600px;">
+                The best founders start young. Most quit before they ship.
+            </p>
+            <p class="reveal"
+                style="font-size: clamp(1rem, 2vw, 1.5rem); color: var(--text-primary); font-weight: 700;">
+                We're fixing that.
+            </p>
+            <div class="accent-card reveal"
+                style="margin-top: var(--content-gap); text-align:center; min-width: 280px;">
+                <p style="margin-bottom: 0.25em;">Ready to join us?</p>
+                <p style="font-weight: 700; font-size: var(--h3-size); color: #1a1a1a;">founder@nerdynetwork.com</p>
+            </div>
+            <p class="reveal mt-md" style="color: var(--text-muted); max-width: 500px; text-align:center;">
+                Every feature designed for execution velocity. Every mechanic prevents churn.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Lucide Icons CDN — renders all <i data-lucide="..."> elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <!-- ===========================================
+         JAVASCRIPT: SLIDE PRESENTATION CONTROLLER
+         Handles navigation, animations, progress tracking
+         =========================================== -->
+    <script>
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.totalSlides = this.slides.length;
+                this.currentSlide = 0;
+
+                this.progressBar = document.getElementById('progressBar');
+                this.navDotsContainer = document.getElementById('navDots');
+                this.slideCounter = document.getElementById('slideCounter');
+
+                this.isScrolling = false;
+                this.scrollTimeout = null;
+
+                this.init();
+            }
+
+            init() {
+                this.createNavDots();
+                this.setupIntersectionObserver();
+                this.setupKeyboardNav();
+                this.setupWheelNav();
+                this.setupTouchNav();
+                this.updateUI(0);
+            }
+
+            /* --- Navigation Dots --- */
+            createNavDots() {
+                for (let i = 0; i < this.totalSlides; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+                    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                    dot.addEventListener('click', () => this.goToSlide(i));
+                    this.navDotsContainer.appendChild(dot);
+                }
+            }
+
+            /* --- Intersection Observer: detects which slide is visible --- */
+            setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            const idx = parseInt(entry.target.dataset.slide);
+                            if (!isNaN(idx)) {
+                                this.currentSlide = idx;
+                                this.updateUI(idx);
+                            }
+                        }
+                    });
+                }, { threshold: 0.55 });
+
+                this.slides.forEach((slide) => observer.observe(slide));
+            }
+
+            /* --- Keyboard navigation --- */
+            setupKeyboardNav() {
+                document.addEventListener('keydown', (e) => {
+                    switch (e.key) {
+                        case 'ArrowDown':
+                        case 'ArrowRight':
+                        case ' ':
+                            e.preventDefault();
+                            this.nextSlide();
+                            break;
+                        case 'ArrowUp':
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            this.prevSlide();
+                            break;
+                        case 'Home':
+                            e.preventDefault();
+                            this.goToSlide(0);
+                            break;
+                        case 'End':
+                            e.preventDefault();
+                            this.goToSlide(this.totalSlides - 1);
+                            break;
+                    }
+                });
+            }
+
+            /* --- Mouse wheel navigation with debounce --- */
+            setupWheelNav() {
+                document.addEventListener('wheel', (e) => {
+                    if (this.isScrolling) return;
+                    this.isScrolling = true;
+
+                    if (e.deltaY > 0) this.nextSlide();
+                    else if (e.deltaY < 0) this.prevSlide();
+
+                    clearTimeout(this.scrollTimeout);
+                    this.scrollTimeout = setTimeout(() => {
+                        this.isScrolling = false;
+                    }, 800);
+                }, { passive: true });
+            }
+
+            /* --- Touch/swipe navigation --- */
+            setupTouchNav() {
+                let startY = 0;
+                document.addEventListener('touchstart', (e) => {
+                    startY = e.touches[0].clientY;
+                }, { passive: true });
+
+                document.addEventListener('touchend', (e) => {
+                    const deltaY = startY - e.changedTouches[0].clientY;
+                    if (Math.abs(deltaY) > 50) {
+                        if (deltaY > 0) this.nextSlide();
+                        else this.prevSlide();
+                    }
+                }, { passive: true });
+            }
+
+            /* --- Slide navigation --- */
+            nextSlide() {
+                if (this.currentSlide < this.totalSlides - 1) {
+                    this.goToSlide(this.currentSlide + 1);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.goToSlide(this.currentSlide - 1);
+                }
+            }
+
+            goToSlide(idx) {
+                if (idx < 0 || idx >= this.totalSlides) return;
+                this.slides[idx].scrollIntoView({ behavior: 'smooth' });
+                this.currentSlide = idx;
+                this.updateUI(idx);
+            }
+
+            /* --- UI updates: progress, dots, counter --- */
+            updateUI(idx) {
+                // Progress bar
+                const pct = ((idx + 1) / this.totalSlides) * 100;
+                this.progressBar.style.width = pct + '%';
+
+                // Nav dots
+                const dots = this.navDotsContainer.querySelectorAll('.nav-dot');
+                dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+
+                // Counter
+                this.slideCounter.textContent = `${idx + 1} / ${this.totalSlides}`;
+            }
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            // Initialize presentation
+            new SlidePresentation();
+        });
+    </script>
+</body>
+
+</html>
