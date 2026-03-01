@@ -8,8 +8,9 @@
     <meta name="description"
         content="The Private Execution Network for Gen Z Builders. Turning teenage builders into shipped products.">
 
-    <!-- Fonts: Clash Display (display) + Satoshi (body) from Fontshare -->
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600;700&f[]=satoshi@400;500;700&display=swap"
+    <!-- Fonts: Plus Jakarta Sans (display) + Inter (body) from Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;700&display=swap"
         rel="stylesheet">
 
     <style>
@@ -34,8 +35,8 @@
             --border-subtle: rgba(255, 255, 255, 0.08);
 
             /* Typography — ALL use clamp() for responsive scaling */
-            --font-display: 'Clash Display', sans-serif;
-            --font-body: 'Satoshi', sans-serif;
+            --font-display: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
             --title-size: clamp(1.8rem, 5vw, 4.5rem);
             --h2-size: clamp(1.4rem, 3.5vw, 2.8rem);
             --h3-size: clamp(1rem, 2vw, 1.35rem);
@@ -684,6 +685,64 @@
                 scroll-behavior: auto;
             }
         }
+
+        /* ===========================================
+           PRINT STYLES — One slide per page for PDF export
+           Ctrl+P → Save as PDF with margins "None"
+           =========================================== */
+        @media print {
+            html {
+                scroll-snap-type: none;
+                overflow: visible;
+                height: auto;
+            }
+
+            body {
+                overflow: visible;
+                height: auto;
+                background: #121212;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .slide {
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+                page-break-after: always;
+                break-after: page;
+                scroll-snap-align: unset;
+            }
+
+            .slide:last-of-type {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+
+            /* Hide UI chrome */
+            .progress-bar,
+            .nav-dots,
+            .slide-counter,
+            .keyboard-hint {
+                display: none !important;
+            }
+
+            /* Disable animations */
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            @page {
+                size: landscape;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 
@@ -696,7 +755,7 @@
     <nav class="nav-dots" id="navDots" aria-label="Slide navigation"></nav>
 
     <!-- Slide Counter -->
-    <div class="slide-counter" id="slideCounter">1 / 19</div>
+    <div class="slide-counter" id="slideCounter">1 / 12</div>
 
     <!-- Keyboard Hint -->
     <div class="keyboard-hint">↑↓ or Space</div>
@@ -833,55 +892,12 @@
         </div>
     </section>
 
+
     <!-- ═══════════════════════════════════════════
-         SLIDE 5: USER JOURNEY
+         SLIDE 5: WHY NOW
          ═══════════════════════════════════════════ -->
     <section class="slide" data-slide="4">
         <span class="slide-number">04</span>
-        <div class="slide-content">
-            <h2 class="reveal gradient-text">User Journey</h2>
-            <div class="flex flex-col gap-sm reveal" style="gap: var(--element-gap);">
-                <div class="card flex items-start" style="gap: var(--content-gap);">
-                    <div class="timeline-bar" style="min-height:100%;align-self:stretch;"></div>
-                    <div style="flex:1;">
-                        <p class="label">Week 1</p>
-                        <h3>Onboarding</h3>
-                        <p>Apply with active project proof · Get sorted into house · Set first streak goal</p>
-                    </div>
-                </div>
-                <div class="card flex items-start" style="gap: var(--content-gap);">
-                    <div class="timeline-bar" style="min-height:100%;align-self:stretch;"></div>
-                    <div style="flex:1;">
-                        <p class="label">Weeks 2–8</p>
-                        <h3>Execution Loop</h3>
-                        <p>Post daily updates · Maintain streaks · Build in public</p>
-                    </div>
-                </div>
-                <div class="card flex items-start" style="gap: var(--content-gap);">
-                    <div class="timeline-bar" style="min-height:100%;align-self:stretch;"></div>
-                    <div style="flex:1;">
-                        <p class="label">Weeks 8–12</p>
-                        <h3>Team Formation</h3>
-                        <p>Use AI matching · Validate fit · Lock in team</p>
-                    </div>
-                </div>
-                <div class="card flex items-start" style="gap: var(--content-gap);">
-                    <div class="timeline-bar" style="min-height:100%;align-self:stretch;"></div>
-                    <div style="flex:1;">
-                        <p class="label">Month 4+</p>
-                        <h3>Acceleration</h3>
-                        <p>Qualify for pitch rooms · Present to accelerators · Get direct intros</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         SLIDE 6: WHY NOW
-         ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="5">
-        <span class="slide-number">05</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">Why Now</h2>
             <p class="reveal" style="font-size: var(--body-size); margin-bottom: var(--content-gap);">Five converging
@@ -928,10 +944,10 @@
     </section>
 
     <!-- ═══════════════════════════════════════════
-         SLIDE 7: MARKET OPPORTUNITY
+         SLIDE 6: MARKET OPPORTUNITY
          ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="6">
-        <span class="slide-number">06</span>
+    <section class="slide" data-slide="5">
+        <span class="slide-number">05</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">Market Opportunity</h2>
             <div class="flex flex-col gap-sm reveal" style="gap: var(--content-gap);">
@@ -955,10 +971,10 @@
     </section>
 
     <!-- ═══════════════════════════════════════════
-         SLIDE 8: TRACTION & VALIDATION
+         SLIDE 7: TRACTION & VALIDATION
          ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="7">
-        <span class="slide-number">07</span>
+    <section class="slide" data-slide="6">
+        <span class="slide-number">06</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">Traction &amp; Validation</h2>
             <div class="grid-2 reveal">
@@ -987,49 +1003,12 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════
-         SLIDE 9: ENGAGEMENT & RETENTION
-         ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="8">
-        <span class="slide-number">08</span>
-        <div class="slide-content">
-            <h2 class="reveal gradient-text">Engagement &amp; Retention</h2>
-            <div class="grid-3 reveal">
-                <div class="card">
-                    <i data-lucide="flame" class="icon icon-accent" style="margin-bottom:0.3em;"></i>
-                    <h3>Streaks: Daily Habit Engine</h3>
-                    <p class="mt-sm">Public accountability · social pressure · unlocks pitch rooms &amp; mentor time</p>
-                    <div class="divider"></div>
-                    <p><span style="color:var(--accent);font-weight:700;">D7: 65%</span> · <span
-                            style="color:var(--accent);font-weight:700;">D30: 45%</span> · <span
-                            style="color:var(--accent);font-weight:700;">D90: 30%</span></p>
-                </div>
-                <div class="card">
-                    <i data-lucide="home" class="icon icon-alt" style="margin-bottom:0.3em;"></i>
-                    <h3>Houses: Identity &amp; Belonging</h3>
-                    <p class="mt-sm">In-group identity · house competition · leaderboards · alumni engagement</p>
-                    <div class="divider"></div>
-                    <p><span style="color:var(--accent-alt);font-weight:700;">+35%</span> session freq · <span
-                            style="color:var(--accent-alt);font-weight:700;">2.5x</span> referral rate · <span
-                            style="color:var(--accent-alt);font-weight:700;">60%</span> identify w/ house</p>
-                </div>
-                <div class="card">
-                    <i data-lucide="network" class="icon icon-alt2" style="margin-bottom:0.3em;"></i>
-                    <h3>Network Effects</h3>
-                    <p class="mt-sm">More builders = more cofounders · more shipped = more proof · more placements =
-                        stronger brand</p>
-                    <div class="divider"></div>
-                    <p style="color:var(--accent-alt2);font-weight:700;">Metcalfe's Law: value grows exponentially</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ═══════════════════════════════════════════
-         SLIDE 10: BUSINESS MODEL
+         SLIDE 8: BUSINESS MODEL
          ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="9">
-        <span class="slide-number">09</span>
+    <section class="slide" data-slide="7">
+        <span class="slide-number">07</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">Business Model</h2>
             <div class="grid-2 reveal">
@@ -1065,52 +1044,10 @@
 
 
     <!-- ═══════════════════════════════════════════
-         SLIDE 11: GO-TO-MARKET
+         SLIDE 9: COMPETITIVE LANDSCAPE
          ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="10">
-        <span class="slide-number">10</span>
-        <div class="slide-content">
-            <h2 class="reveal gradient-text">Go-To-Market</h2>
-            <div class="flex flex-col gap-sm reveal" style="gap: var(--element-gap);">
-                <div class="card flex items-start" style="gap: var(--content-gap);">
-                    <div class="timeline-bar" style="align-self:stretch;"></div>
-                    <div style="flex:1;">
-                        <h3>Phase 1: Curated Launch</h3>
-                        <p>Months 1–3 · <span style="color:var(--accent);font-weight:600;">KPI: 65% weekly active</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="card flex items-start" style="gap: var(--content-gap);">
-                    <div class="timeline-bar" style="align-self:stretch;"></div>
-                    <div style="flex:1;">
-                        <h3>Phase 2: Viral Expansion</h3>
-                        <p>Months 4–9 · <span style="color:var(--accent);font-weight:600;">KPI: 10K active
-                                builders</span></p>
-                    </div>
-                </div>
-                <div class="card flex items-start" style="gap: var(--content-gap);">
-                    <div class="timeline-bar" style="align-self:stretch;"></div>
-                    <div style="flex:1;">
-                        <h3>Phase 3: Accelerator Network</h3>
-                        <p>Months 10–18 · <span style="color:var(--accent);font-weight:600;">KPI: 60+ placements</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="accent-card flex items-start" style="gap: var(--content-gap);">
-                    <div style="flex:1;">
-                        <h3>Phase 4: Platform Dominance</h3>
-                        <p>Year 2+ · <strong>KPI: 100K+ builders</strong></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         SLIDE 12: COMPETITIVE LANDSCAPE
-         ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="11">
-        <span class="slide-number">11</span>
+    <section class="slide" data-slide="8">
+        <span class="slide-number">08</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">Competitive Landscape</h2>
             <div class="flex flex-col gap-sm reveal" style="gap: var(--element-gap);">
@@ -1138,151 +1075,12 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════
-         SLIDE 13: OUR MOAT
-         ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="12">
-        <span class="slide-number">12</span>
-        <div class="slide-content">
-            <h2 class="reveal gradient-text">Our Moat</h2>
-            <div class="grid-3 reveal">
-                <div class="card" style="border-top:3px solid var(--accent);">
-                    <h3 class="card-icon"><i data-lucide="link" class="icon icon-accent"></i> Network Effects</h3>
-                    <p class="mt-sm">Supply &amp; demand flywheel multiplies value</p>
-                </div>
-                <div class="card" style="border-top:3px solid var(--accent-secondary);">
-                    <h3 class="card-icon"><i data-lucide="bar-chart-3" class="icon icon-accent"></i> Data Moat</h3>
-                    <p class="mt-sm">Unique shipping velocity &amp; collaboration data</p>
-                </div>
-                <div class="card" style="border-top:3px solid var(--accent-alt);">
-                    <h3 class="card-icon"><i data-lucide="home" class="icon icon-alt"></i> Cultural Moat</h3>
-                    <p class="mt-sm">House identity creates sticky belonging</p>
-                </div>
-                <div class="card" style="border-top:3px solid var(--accent-alt2);">
-                    <h3 class="card-icon"><i data-lucide="flame" class="icon icon-alt2"></i> Habit Moat</h3>
-                    <p class="mt-sm">Daily streaks become reflexive behavior</p>
-                </div>
-                <div class="card" style="border-top:3px solid var(--accent);">
-                    <h3 class="card-icon"><i data-lucide="trophy" class="icon icon-accent"></i> Brand Moat</h3>
-                    <p class="mt-sm">Become the standard path for serious builders</p>
-                </div>
-                <div class="card" style="border-top:3px solid var(--accent-secondary);">
-                    <h3 class="card-icon"><i data-lucide="crosshair" class="icon icon-accent"></i> Curation Moat</h3>
-                    <p class="mt-sm">Selective quality maintains flywheel</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ═══════════════════════════════════════════
-         SLIDE 14: PARTNERSHIPS
+         SLIDE 10: THE TEAM
          ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="13">
-        <span class="slide-number">13</span>
-        <div class="slide-content">
-            <h2 class="reveal gradient-text">Partnerships &amp; Pipeline</h2>
-            <p class="reveal label mb-sm">Tier 1 Accelerator Targets</p>
-            <div class="grid-2 reveal">
-                <div class="card text-center">
-                    <h3>Y Combinator</h3>
-                    <p class="mt-sm">400+ startups/batch</p>
-                </div>
-                <div class="card text-center">
-                    <h3>Techstars</h3>
-                    <p class="mt-sm">3,000+ companies, 15 countries</p>
-                </div>
-                <div class="card text-center">
-                    <h3>On Deck</h3>
-                    <p class="mt-sm">Fellowship for idea-stage founders</p>
-                </div>
-                <div class="card text-center">
-                    <h3>Neo</h3>
-                    <p class="mt-sm">College students &amp; young technologists</p>
-                </div>
-            </div>
-            <div class="grid-2 reveal mt-md">
-                <div class="card" style="border-left:3px solid var(--accent);">
-                    <p class="label">Value to Accelerators</p>
-                    <p class="mt-sm">Pre-vetted pipeline with execution proof · Transparent shipping metrics · Reduced
-                        screening costs · Diversity pipeline to high school talent</p>
-                </div>
-                <div class="accent-card">
-                    <p class="label">Revenue Model</p>
-                    <p class="mt-sm">$5–15K finder fees per placement · 0.5–1% carry · $50K+ sponsored pitch rooms ·
-                        Co-branded cohorts</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         SLIDE 15: ROADMAP
-         ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="14">
-        <span class="slide-number">14</span>
-        <div class="slide-content">
-            <h2 class="reveal gradient-text">Roadmap</h2>
-            <div class="grid-2 reveal">
-                <div class="card">
-                    <p class="label">Q1 2026</p>
-                    <p class="mt-sm">Curated launch of 200 builders · House system live · Streak mechanics · First 2
-                        pitch rooms</p>
-                </div>
-                <div class="card">
-                    <p class="label" style="color:var(--accent-alt);">Q2 2026</p>
-                    <p class="mt-sm">Invite system (viral) · AI team matching beta · 10 pitch rooms · Target: 2K users
-                    </p>
-                </div>
-                <div class="card">
-                    <p class="label" style="color:var(--accent-alt2);">Q3 2026</p>
-                    <p class="mt-sm">20 accelerator placements · Premium cohorts · International expansion · Target: 8K
-                        users</p>
-                </div>
-                <div class="accent-card">
-                    <p class="label">Q4 2026</p>
-                    <p class="mt-sm">15K active builders · 60 placements total · Mobile app · Alumni mentoring</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         SLIDE 16: OUR VISION
-         ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="15">
-        <span class="slide-number">15</span>
-        <div class="slide-content text-center" style="align-items:center;">
-            <h2 class="reveal gradient-text">Our Vision</h2>
-            <p class="reveal"
-                style="font-size: clamp(0.95rem, 1.8vw, 1.35rem); color: var(--text-primary); margin-bottom: var(--content-gap); max-width: 700px;">
-                In 10 years, every major startup will trace its founding team back to Nerdy Network.
-            </p>
-            <div class="grid-2 reveal" style="max-width:800px;">
-                <div class="card text-center">
-                    <i data-lucide="eye" class="icon icon-lg icon-accent" style="margin: 0 auto 0.4em;"></i>
-                    <p>The reputation layer for execution velocity</p>
-                </div>
-                <div class="card text-center">
-                    <i data-lucide="users" class="icon icon-lg icon-alt" style="margin: 0 auto 0.4em;"></i>
-                    <p>The talent graph for early-stage founders</p>
-                </div>
-                <div class="card text-center">
-                    <i data-lucide="rocket" class="icon icon-lg icon-accent" style="margin: 0 auto 0.4em;"></i>
-                    <p>The default path to funded companies</p>
-                </div>
-                <div class="card text-center">
-                    <i data-lucide="flame" class="icon icon-lg icon-accent" style="margin: 0 auto 0.4em;"></i>
-                    <p>The cultural home for ambitious builders</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         SLIDE 17: THE TEAM
-         ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="16">
-        <span class="slide-number">16</span>
+    <section class="slide" data-slide="9">
+        <span class="slide-number">09</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">The Team</h2>
             <div class="accent-card reveal mb-md">
@@ -1314,10 +1112,10 @@
     </section>
 
     <!-- ═══════════════════════════════════════════
-         SLIDE 18: THE ASK
+         SLIDE 11: THE ASK
          ═══════════════════════════════════════════ -->
-    <section class="slide" data-slide="17">
-        <span class="slide-number">17</span>
+    <section class="slide" data-slide="10">
+        <span class="slide-number">10</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">The Ask</h2>
             <div class="accent-card reveal mb-md" style="text-align:center;">
@@ -1360,9 +1158,9 @@
     </section>
 
     <!-- ═══════════════════════════════════════════
-         SLIDE 19: CLOSING / CTA
+         SLIDE 12: CLOSING / CTA
          ═══════════════════════════════════════════ -->
-    <section class="slide closing-slide" data-slide="18">
+    <section class="slide closing-slide" data-slide="11">
         <div class="slide-content" style="align-items:center;">
             <h2 class="reveal" style="font-size: var(--title-size);">Let's Build the<br><span class="gradient-text">Next
                     Generation</span></h2>

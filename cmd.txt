@@ -1,0 +1,4 @@
+npx decktape generic http://127.0.0.1:5500/pitch-deck.html pitch-deck.pdf --size 1920x1080
+
+
+use live-server to hot reload on localhost at 5500 port.
