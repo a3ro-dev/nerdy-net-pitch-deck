@@ -595,6 +595,95 @@
         .accent-card .icon {
             color: #1a1a1a;
         }
+
+        /* ===========================================
+           3-COLUMN GRID
+           =========================================== */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+        }
+
+        /* ===========================================
+           DIVIDER — Horizontal line for card sections
+           =========================================== */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border-subtle);
+            margin: var(--element-gap) 0;
+        }
+
+        /* ===========================================
+           RESPONSIVE BREAKPOINTS (MANDATORY per SKILL.md)
+           Height-based scaling for viewport fitting
+           =========================================== */
+
+        /* Short viewports (< 700px height) */
+        @media (max-height: 700px) {
+            :root {
+                --slide-padding: clamp(0.75rem, 3vw, 2rem);
+                --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+                --title-size: clamp(1.25rem, 4.5vw, 2.5rem);
+                --h2-size: clamp(1rem, 3vw, 1.75rem);
+            }
+        }
+
+        /* Very short viewports (< 600px height) */
+        @media (max-height: 600px) {
+            :root {
+                --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+                --content-gap: clamp(0.3rem, 1vw, 0.75rem);
+                --title-size: clamp(1.1rem, 4vw, 2rem);
+                --body-size: clamp(0.7rem, 1.2vw, 0.95rem);
+            }
+
+            /* Hide non-essential elements */
+            .nav-dots,
+            .keyboard-hint {
+                display: none;
+            }
+        }
+
+        /* Extremely short — landscape phones (< 500px height) */
+        @media (max-height: 500px) {
+            :root {
+                --slide-padding: clamp(0.4rem, 2vw, 1rem);
+                --title-size: clamp(1rem, 3.5vw, 1.5rem);
+                --h2-size: clamp(0.9rem, 2.5vw, 1.25rem);
+                --body-size: clamp(0.65rem, 1vw, 0.85rem);
+            }
+        }
+
+        /* Narrow viewports (< 600px width) — stack grids */
+        @media (max-width: 600px) {
+            :root {
+                --title-size: clamp(1.25rem, 7vw, 2.5rem);
+            }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===========================================
+           REDUCED MOTION — Respect user preferences
+           =========================================== */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.2s !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
     </style>
 </head>
 
@@ -640,17 +729,18 @@
                 style="font-size: clamp(0.95rem, 1.8vw, 1.3rem); color: var(--text-primary); margin-bottom: var(--content-gap);">
                 Gen Z is the most entrepreneurial generation — but they're building in broken environments.
             </p>
-            <div class="grid-2 reveal">
+            <div class="grid-3 reveal">
                 <div class="accent-card">
-                    <p class="label">THE STAT</p>
                     <p class="stat" style="color: #1a1a1a;">50%</p>
-                    <p style="margin-top:0.25em;">of Gen Z wants to start a business</p>
+                    <p>want to start a business</p>
                 </div>
-                <div class="card">
-                    <p class="label">THE REALITY</p>
-                    <p style="color: var(--text-primary); font-weight: 700; font-size: var(--h3-size);">Most quit before
-                        they ship</p>
-                    <p class="mt-sm">No structured path. No accountability.</p>
+                <div class="card" style="border-top: 2px solid var(--accent);">
+                    <p class="stat stat-accent">71%</p>
+                    <p>interested in entrepreneurship</p>
+                </div>
+                <div class="card" style="border-top: 2px solid var(--accent-alt);">
+                    <p class="stat stat-accent">66%</p>
+                    <p>started or plan a side hustle</p>
                 </div>
             </div>
             <div class="reveal flex flex-col gap-sm mt-md" style="gap: var(--element-gap);">
@@ -794,26 +884,44 @@
         <span class="slide-number">05</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">Why Now</h2>
-            <div class="grid-2 reveal">
-                <div class="card">
-                    <i data-lucide="rocket" class="icon icon-lg icon-accent" style="margin-bottom:0.4em;"></i>
-                    <h3>Gen Z Entrepreneurship</h3>
-                    <p class="mt-sm">50% want to start a business</p>
+            <p class="reveal" style="font-size: var(--body-size); margin-bottom: var(--content-gap);">Five converging
+                forces make this the perfect moment:</p>
+            <div class="flex flex-col reveal" style="gap: var(--element-gap);">
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <i data-lucide="rocket" class="icon icon-accent" style="flex-shrink:0;"></i>
+                    <div>
+                        <h3>Gen Z Entrepreneurship Explosion</h3>
+                        <p>50% want to start a business · 1 in 5 go straight from student to entrepreneur vs 3% of
+                            Boomers</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <i data-lucide="trending-up" class="icon icon-lg icon-alt" style="margin-bottom:0.4em;"></i>
-                    <h3>Hackathon Explosion</h3>
-                    <p class="mt-sm">75% undergraduate participation</p>
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <i data-lucide="trending-up" class="icon icon-alt" style="flex-shrink:0;"></i>
+                    <div>
+                        <h3>Proven Demand for Teen Hackathons</h3>
+                        <p>MLH: 75% undergrad participation · Devpost: 163 countries · Mass builder movement</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <i data-lucide="zap" class="icon icon-lg icon-alt2" style="margin-bottom:0.4em;"></i>
-                    <h3>Death of Passive Platforms</h3>
-                    <p class="mt-sm">Buildspace shut down 2024</p>
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <i data-lucide="zap" class="icon icon-alt2" style="flex-shrink:0;"></i>
+                    <div>
+                        <h3>Death of Passive Communities</h3>
+                        <p>Buildspace: $10M raised, $100M valuation, 30K users — shut down Aug 2024</p>
+                    </div>
                 </div>
-                <div class="accent-card">
-                    <i data-lucide="target" class="icon icon-lg" style="margin-bottom:0.4em;"></i>
-                    <h3>Accelerator Pipeline Gap</h3>
-                    <p class="mt-sm">&lt;2% YC acceptance rate</p>
+                <div class="card flex items-center" style="gap: var(--content-gap);">
+                    <i data-lucide="target" class="icon icon-accent" style="flex-shrink:0;"></i>
+                    <div>
+                        <h3>Accelerator Pipeline Gap</h3>
+                        <p>&lt;2% YC acceptance · No systematic way to track builder velocity</p>
+                    </div>
+                </div>
+                <div class="accent-card flex items-center" style="gap: var(--content-gap);">
+                    <i data-lucide="gamepad-2" class="icon icon-lg" style="flex-shrink:0;"></i>
+                    <div>
+                        <h3>Gamification Market</h3>
+                        <p>$40.2B in 2024 → $99.2B by 2032 · Duolingo proved streaks scale to billions</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -857,22 +965,23 @@
                 <div class="card">
                     <p class="label">WAITLIST</p>
                     <p class="stat stat-accent">500+</p>
-                    <p>Signups in 2 weeks · 78% completion rate</p>
+                    <p>Signups in 2 weeks · 78% quiz completion · 320 submitted project proof</p>
                 </div>
                 <div class="card">
-                    <p class="label" style="color: var(--accent-alt);">BETA PILOT</p>
+                    <p class="label" style="color: var(--accent-alt);">PILOT COHORT</p>
                     <p class="stat stat-accent">68%</p>
-                    <p>Daily active rate · 8 teams formed</p>
+                    <p>Daily active rate · 42% maintained 14+ day streaks · 3 projects shipped</p>
                 </div>
                 <div class="card">
                     <p class="label" style="color: var(--accent-alt2);">PARTNERSHIPS</p>
                     <p class="stat">4</p>
-                    <p>Accelerator discussions · 12 committed mentors</p>
+                    <p>Accelerator programs in discussion · 12 mentors committed · 2 university clubs signed</p>
                 </div>
                 <div class="accent-card">
-                    <p class="label">VALIDATION</p>
+                    <p class="label">COMPETITIVE VALIDATION</p>
                     <p class="stat" style="color:#1a1a1a;">$100M</p>
-                    <p>Buildspace valuation proof · Market demand validated</p>
+                    <p>Buildspace valuation before shutdown · Replit: $1.16B targeting young hackers · Indie Hackers
+                        acquired by Stripe</p>
                 </div>
             </div>
         </div>
@@ -885,36 +994,32 @@
         <span class="slide-number">08</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">Engagement &amp; Retention</h2>
-            <div class="flex flex-col gap-sm reveal" style="gap: var(--content-gap);">
-                <div class="card flex items-center" style="gap: var(--content-gap);">
-                    <div style="flex-shrink:0;text-align:center;min-width:80px;">
-                        <p class="stat stat-accent">65%</p>
-                        <p class="small" style="color:var(--text-muted);">Day 7 retention</p>
-                    </div>
-                    <div>
-                        <h3>Streaks</h3>
-                        <p>Daily accountability creates habit formation</p>
-                    </div>
+            <div class="grid-3 reveal">
+                <div class="card">
+                    <i data-lucide="flame" class="icon icon-accent" style="margin-bottom:0.3em;"></i>
+                    <h3>Streaks: Daily Habit Engine</h3>
+                    <p class="mt-sm">Public accountability · social pressure · unlocks pitch rooms &amp; mentor time</p>
+                    <div class="divider"></div>
+                    <p><span style="color:var(--accent);font-weight:700;">D7: 65%</span> · <span
+                            style="color:var(--accent);font-weight:700;">D30: 45%</span> · <span
+                            style="color:var(--accent);font-weight:700;">D90: 30%</span></p>
                 </div>
-                <div class="card flex items-center" style="gap: var(--content-gap);">
-                    <div style="flex-shrink:0;text-align:center;min-width:80px;">
-                        <p class="stat stat-accent">35%</p>
-                        <p class="small" style="color:var(--text-muted);">Session increase</p>
-                    </div>
-                    <div>
-                        <h3>Houses</h3>
-                        <p>Identity and belonging drive engagement</p>
-                    </div>
+                <div class="card">
+                    <i data-lucide="home" class="icon icon-alt" style="margin-bottom:0.3em;"></i>
+                    <h3>Houses: Identity &amp; Belonging</h3>
+                    <p class="mt-sm">In-group identity · house competition · leaderboards · alumni engagement</p>
+                    <div class="divider"></div>
+                    <p><span style="color:var(--accent-alt);font-weight:700;">+35%</span> session freq · <span
+                            style="color:var(--accent-alt);font-weight:700;">2.5x</span> referral rate · <span
+                            style="color:var(--accent-alt);font-weight:700;">60%</span> identify w/ house</p>
                 </div>
-                <div class="card flex items-center" style="gap: var(--content-gap);">
-                    <div style="flex-shrink:0;text-align:center;min-width:80px;">
-                        <p class="stat stat-accent">2.5x</p>
-                        <p class="small" style="color:var(--text-muted);">Referral multiplier</p>
-                    </div>
-                    <div>
-                        <h3>Network Effects</h3>
-                        <p>Metcalfe's Law compounds value</p>
-                    </div>
+                <div class="card">
+                    <i data-lucide="network" class="icon icon-alt2" style="margin-bottom:0.3em;"></i>
+                    <h3>Network Effects</h3>
+                    <p class="mt-sm">More builders = more cofounders · more shipped = more proof · more placements =
+                        stronger brand</p>
+                    <div class="divider"></div>
+                    <p style="color:var(--accent-alt2);font-weight:700;">Metcalfe's Law: value grows exponentially</p>
                 </div>
             </div>
         </div>
@@ -950,8 +1055,10 @@
                 </div>
             </div>
             <div class="accent-card reveal mt-md" style="text-align:center;">
-                <p class="label">Year 1 Revenue Target</p>
-                <p class="stat" style="color:#1a1a1a;">$615K</p>
+                <p class="label">Revenue Targets</p>
+                <p class="stat" style="color:#1a1a1a;">$615K <span style="font-size:0.5em;font-weight:400;">Y1</span> →
+                    $2.1M <span style="font-size:0.5em;font-weight:400;">Y2</span> → $6.8M <span
+                        style="font-size:0.5em;font-weight:400;">Y3</span></p>
             </div>
         </div>
     </section>
@@ -1073,30 +1180,37 @@
     <section class="slide" data-slide="13">
         <span class="slide-number">13</span>
         <div class="slide-content">
-            <h2 class="reveal gradient-text">Partnerships</h2>
-            <p class="reveal label mb-md">Tier 1 Accelerators</p>
+            <h2 class="reveal gradient-text">Partnerships &amp; Pipeline</h2>
+            <p class="reveal label mb-sm">Tier 1 Accelerator Targets</p>
             <div class="grid-2 reveal">
                 <div class="card text-center">
                     <h3>Y Combinator</h3>
-                    <p class="mt-sm">In discussions</p>
+                    <p class="mt-sm">400+ startups/batch</p>
                 </div>
                 <div class="card text-center">
                     <h3>Techstars</h3>
-                    <p class="mt-sm">In discussions</p>
+                    <p class="mt-sm">3,000+ companies, 15 countries</p>
                 </div>
                 <div class="card text-center">
                     <h3>On Deck</h3>
-                    <p class="mt-sm">In discussions</p>
+                    <p class="mt-sm">Fellowship for idea-stage founders</p>
                 </div>
                 <div class="card text-center">
                     <h3>Neo</h3>
-                    <p class="mt-sm">In discussions</p>
+                    <p class="mt-sm">College students &amp; young technologists</p>
                 </div>
             </div>
-            <div class="reveal mt-md">
-                <p class="label" style="color: var(--accent-alt); margin-bottom: 0.5em;">Other Pipelines</p>
-                <p>Top 100 high schools &amp; universities · Tech company partnerships · Mentor network (12 committed)
-                </p>
+            <div class="grid-2 reveal mt-md">
+                <div class="card" style="border-left:3px solid var(--accent);">
+                    <p class="label">Value to Accelerators</p>
+                    <p class="mt-sm">Pre-vetted pipeline with execution proof · Transparent shipping metrics · Reduced
+                        screening costs · Diversity pipeline to high school talent</p>
+                </div>
+                <div class="accent-card">
+                    <p class="label">Revenue Model</p>
+                    <p class="mt-sm">$5–15K finder fees per placement · 0.5–1% carry · $50K+ sponsored pitch rooms ·
+                        Co-branded cohorts</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1214,27 +1328,33 @@
                 <div class="card">
                     <p class="label">Product &amp; Engineering</p>
                     <p class="stat stat-accent mt-sm">$600K</p>
-                    <p>40%</p>
+                    <p>2 engineers · 1 designer · AI matching · mobile app</p>
                 </div>
                 <div class="card">
                     <p class="label" style="color:var(--accent-alt);">Growth &amp; Community</p>
                     <p class="stat stat-accent mt-sm">$450K</p>
-                    <p>30%</p>
+                    <p>Community manager · growth marketer · pitch room ops</p>
                 </div>
                 <div class="card">
                     <p class="label" style="color:var(--accent-alt2);">Operations</p>
                     <p class="stat stat-accent mt-sm">$300K</p>
-                    <p>20%</p>
+                    <p>Legal &amp; compliance · mentor compensation · tools</p>
                 </div>
                 <div class="card">
                     <p class="label" style="color:var(--accent-secondary);">Runway &amp; Reserve</p>
                     <p class="stat stat-accent mt-sm">$150K</p>
-                    <p>10%</p>
+                    <p>18-month runway · emergency fund</p>
                 </div>
             </div>
-            <div class="card reveal mt-md" style="border-left:3px solid var(--accent-alt);">
-                <p class="label" style="color:var(--accent-alt);">18-Month Milestone</p>
-                <p>15K builders · 60 placements · $615K revenue · 45% D30 retention</p>
+            <div class="grid-2 reveal mt-md">
+                <div class="card" style="border-left:3px solid var(--accent);">
+                    <p class="label">By Month 12</p>
+                    <p>15K builders · 60 placements · $615K revenue · 45% D30 retention</p>
+                </div>
+                <div class="accent-card">
+                    <p class="label">By Month 18</p>
+                    <p>40K builders · 150 placements · $1.8M ARR · Series A ready ($40–50M)</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1254,14 +1374,30 @@
                 style="font-size: clamp(1rem, 2vw, 1.5rem); color: var(--text-primary); font-weight: 700;">
                 We're fixing that.
             </p>
+            <div class="grid-2 reveal" style="margin-top: var(--content-gap); max-width: 700px;">
+                <div class="card text-center">
+                    <p style="color:var(--accent);font-weight:700;">Execution-first</p>
+                    <p>not content-first</p>
+                </div>
+                <div class="card text-center">
+                    <p style="color:var(--accent-alt);font-weight:700;">Accountability-driven</p>
+                    <p>not motivation-driven</p>
+                </div>
+                <div class="card text-center">
+                    <p style="color:var(--accent-alt2);font-weight:700;">Network effects</p>
+                    <p>not broadcast media</p>
+                </div>
+                <div class="card text-center">
+                    <p style="color:var(--accent);font-weight:700;">Transparent reputation</p>
+                    <p>not opaque applications</p>
+                </div>
+            </div>
             <div class="accent-card reveal"
                 style="margin-top: var(--content-gap); text-align:center; min-width: 280px;">
-                <p style="margin-bottom: 0.25em;">Ready to join us?</p>
-                <p style="font-weight: 700; font-size: var(--h3-size); color: #1a1a1a;">founder@nerdynetwork.com</p>
+                <p style="margin-bottom: 0.25em;">Join us in building the next generation of founders.</p>
+                <p style="font-weight: 700; font-size: var(--h3-size); color: #1a1a1a;">[Founder Name] · [Email] ·
+                    [Calendar Link]</p>
             </div>
-            <p class="reveal mt-md" style="color: var(--text-muted); max-width: 500px; text-align:center;">
-                Every feature designed for execution velocity. Every mechanic prevents churn.
-            </p>
         </div>
     </section>
 
