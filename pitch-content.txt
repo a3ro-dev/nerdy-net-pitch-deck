@@ -75,13 +75,13 @@ ________________
 
 
 SLIDE 7: MARKET OPPORTUNITY
-TAM: $12.1B Global productivity app market (2025), growing to $24.8B by 2033 at 9.2% CAGR
-Teen creator economy layer. Gamified productivity subset. Social networking for builders. Early-stage accelerator deal flow.
-SAM: $2.8B Addressable segment of teen and college-age builders (ages 13-22)
-5.2M new business applications filed annually (2021-2024 average). Approximately 15-20% from Gen Z demographic. Youth hackathon participation: hundreds of events, tens of thousands of active participants annually. Replit community: 17M+ developers, significant teen builder concentration.
-SOM: $280M Serviceable obtainable market in first 3 years
-Year 1: 10,000 active builders at $50 effective revenue per user Year 2: 50,000 active builders at $75 ARPU Year 3: 150,000 active builders at $100 ARPU
-Initial capture focuses on high-intent builders already active in hackathons, indie hacker communities, and school tech clubs. Expansion through viral mechanics and accelerator partnerships.
+TAM: ~2.0M high-intent teen & college builders globally.
+Embedded in a $15–25B youth educational technology and game-based learning market.
+SAM: ~800k high-intent builders in English-speaking, digitally native markets (US, UK, Canada, India).
+Approximately $80M in annual revenue potential at eventual $100 ARPU.
+SOM: 150,000 active builders (3-year goal)
+Represents ~19% penetration of SAM. Equates to $10.5M annual revenue at our $70 Year 3 ARPU target.
+Initial capture focuses on high-intent builders already active in hackathons, indie hacker communities, Replit (which has ~13M student devs), and school tech clubs.
 ________________
 
 
@@ -130,17 +130,20 @@ ________________
 
 SLIDE 10: BUSINESS MODEL
 FIVE REVENUE STREAMS
-1. Accelerator Partnerships (Year 1 Focus)
-Revenue share on placed founders. Typical accelerator takes 5-7% equity for $125-500K investment. Nerdy Network captures 0.5-1% carry or $5-15K finder's fee per placement. Target: 40 placements in Year 1 at $8K average = $320K revenue.
+1. Accelerator Placements
+Scout bounties for placed teams ($8k-$10k average per placement).
 2. Sponsored Pitch Rooms
-Companies and funds pay to sponsor curated pitch events. Access to pre-vetted builder talent pipeline. Branding and deal flow for sponsors. Target: $50K per major sponsor, 4 sponsors in Year 1 = $200K.
+Premium sponsorship packages for curated pitch events with recruiting access ($50k-$75k per sponsor annually).
 3. Premium Execution Cohorts
-Advanced 8-week intensive programs with 1:1 coaching, dedicated mentor time, and guaranteed pitch room slots. Limited to 20 builders per cohort. Priced at $500-1000 per builder. Target: 2 cohorts in Year 1, 30 total participants = $20K.
+High-touch 8-week masterminds with 1:1 coaching and guaranteed pitch room access ($750-$1,000 per seat).
 4. Talent Pipeline Partnerships
-Companies pay annual fees for early access to builder talent. Recruiting pipeline for intern and entry-level engineering roles. Target: 3 partners at $25K annual contract = $75K (Year 2+).
-5. Platform Fees (Long-term)
-Transaction fees on team equity splits facilitated through platform. Percentage of fundraising consulting for graduated teams. SaaS subscriptions for advanced analytics and features.
-Year 1 Revenue Target: $615K Year 2 Revenue Target: $2.1M Year 3 Revenue Target: $6.8M
+Companies pay annual fees for early access to builder talent (Year 2+ focus).
+5. Platform / Subscription Fees
+SaaS tools, advanced analytics, priority matching, and fundraising success fees.
+
+Year 1 Revenue Target: $550K (10,000 users @ $55 ARPU)
+Year 2 Revenue Target: $3.0M (50,000 users @ $60 ARPU)
+Year 3 Revenue Target: $10.5M (150,000 users @ $70 ARPU)
 ________________
 
 
@@ -308,40 +311,33 @@ ________________
 
 SLIDE 18: THE ASK
 Raising: $1.5M Seed Round
+Target burn: ~$86k/month → 17–18 months of runway. Early sponsorship and cohort revenue extend this to ~20 months.
+
 Use of Funds:
-Product and Engineering (40% - $600K)
-* 2 full-stack engineers
-* 1 product designer
-* AI matching algorithm development
-* Mobile app development (iOS/Android)
-* Platform infrastructure and scaling
-Growth and Community (30% - $450K)
-* 1 community manager
-* 1 growth marketer
-* Pitch room and event operations
-* Content creation and social media
-* Accelerator partnership development
-Operations (20% - $300K)
-* 1 operations lead
-* Legal and compliance (teen user protection)
-* Mentor and advisor compensation
-* Tools and software
-* Office and team expenses
-Runway and Reserve (10% - $150K)
-* 18-month runway
-* Emergency fund for opportunities
-* Buffer for market changes
+Product and Engineering (43% - $650K)
+* 2 full-stack engineers & 1 product designer
+* Cloud infrastructure and AI matching compute
+Growth and Community (27% - $400K)
+* 1 community manager & 1 growth marketer
+* Marketing spend and early pitch room events
+Operations & Founder (20% - $300K)
+* 1 operations lead & modest founder salary
+* Legal, compliance, accounting, tools
+Runway & Buffer (10% - $150K)
+* Cushion for 18–19 months runway
+* Early experiments and contingency
+
 18-Month Milestones:
 By Month 12:
 * 15,000 active builders
 * 60 accelerator placements
-* $615K revenue (partnerships and sponsors)
+* $550K revenue (partnerships and sponsors)
 * 45% day-30 retention
 * 8 international markets
 By Month 18:
 * 40,000 active builders
 * 150 accelerator placements
-* $1.8M annual revenue run rate
+* $3M annual revenue run rate
 * Positioned for Series A ($8-12M at $40-50M valuation)
 Why now is the right time to invest:
 Gen Z entrepreneurship is exploding but infrastructure is broken. Buildspace's failure proved passive engagement doesn't work. The market needs execution accountability. We have the team, the timing, and the model to build the category-defining platform.
