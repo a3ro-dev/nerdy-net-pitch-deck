@@ -2,6 +2,21 @@
 
 import { useEffect, useState, useRef } from "react";
 
+function buildAsciiPattern(rows: number, cols: number) {
+  const lines: string[] = [];
+  for (let row = 0; row < rows; row += 1) {
+    let line = "";
+    for (let col = 0; col < cols; col += 1) {
+      const seed = (row * 31 + col * 17 + row * col * 7) % 23;
+      line += seed > 15 ? "$" : " ";
+    }
+    lines.push(line);
+  }
+  return lines.join("\n");
+}
+
+const ASCII_BACKGROUND_PATTERN = buildAsciiPattern(60, 100);
+
 const markets = [
   {
     label: "TAM",
@@ -81,11 +96,7 @@ export function TestimonialsSection() {
     <section id="market" ref={sectionRef} className="relative py-32 lg:py-40 bg-foreground text-background overflow-hidden">
       {/* ASCII background pattern */}
       <div className="absolute inset-0 font-mono text-[10px] text-background/[0.02] leading-tight overflow-hidden whitespace-pre select-none" aria-hidden="true">
-        {Array.from({ length: 60 }, (_, i) =>
-          Array.from({ length: 100 }, () =>
-            Math.random() > 0.7 ? "$" : " "
-          ).join("")
-        ).join("\n")}
+        {ASCII_BACKGROUND_PATTERN}
       </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
