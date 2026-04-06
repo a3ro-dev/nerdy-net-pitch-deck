@@ -18,7 +18,6 @@ const footerLinks = {
   Raise: [
     { name: "The Ask", href: "#ask" },
     { name: "Schedule a Call", href: "#ask" },
-    { name: "Download Deck", href: "#" },
   ],
 };
 
