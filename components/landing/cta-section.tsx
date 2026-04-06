@@ -103,13 +103,6 @@ export function CtaSection() {
                     Book a call
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
-                  >
-                    View deck
-                  </Button>
                 </div>
 
                 <p className="text-sm text-muted-foreground mt-6 font-mono">

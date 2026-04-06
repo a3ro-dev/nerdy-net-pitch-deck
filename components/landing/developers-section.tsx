@@ -43,7 +43,6 @@ const competitors = [
 
 export function DevelopersSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [active, setActive] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -94,25 +93,22 @@ export function DevelopersSection() {
           className={`max-w-[55%] transition-all duration-700 delay-100 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
-          onMouseLeave={() => setActive(null)}
         >
           <div className="space-y-2">
             {competitors.map((comp, i) => (
               <div
                 key={comp.name}
-                className={`border p-4 cursor-default transition-all duration-300 ${
-                  active === i ? "border-foreground/30 bg-foreground/[0.04]" : "border-foreground/10 hover:border-foreground/20"
-                } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                className={`border p-4 border-foreground/10 bg-foreground/[0.02] transition-all duration-300 ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
                 style={{ transitionDelay: `${i * 60 + 200}ms` }}
-                onMouseEnter={() => setActive(i)}
-                onClick={() => setActive((prev) => (prev === i ? null : i))}
               >
                 <div className="flex items-start gap-4">
                   <div className="shrink-0 pt-0.5">
                     <span className="text-xs font-mono text-muted-foreground block">{comp.category}</span>
                     <span className="font-medium text-sm">{comp.name}</span>
                   </div>
-                  <div className={`flex-1 overflow-hidden transition-all duration-300 ${active === i ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
+                  <div className="flex-1">
                     <p className="text-xs text-muted-foreground leading-relaxed pt-1 border-t border-foreground/10">
                       <span className="text-foreground/60">Their gap: </span>{comp.why}
                     </p>
@@ -120,9 +116,6 @@ export function DevelopersSection() {
                       <span>Our edge: </span>{comp.advantage}
                     </p>
                   </div>
-                  {active !== i && (
-                    <span className="text-xs text-muted-foreground font-mono shrink-0 self-center hidden md:inline">hover to expand</span>
-                  )}
                 </div>
               </div>
             ))}
