@@ -22,13 +22,9 @@
         :root {
             /* Colors — Nerdy Network brand palette */
             --bg-primary: #121212;
-            --bg-gradient: linear-gradient(135deg, #121212 0%, #1a1f1e 50%, #121212 100%);
             --bg-card: #1a1a1a;
-            --accent: hsl(175, 84%, 32%);
-            --accent-secondary: hsl(175, 84%, 40%);
-            --accent-glow: hsla(175, 84%, 32%, 0.25);
-            --accent-alt: hsl(86, 100%, 38%);
-            --accent-alt2: #20adee;
+            --accent: hsl(175, 84%, 32%); /* Primary teal */
+            --accent-glow: hsla(175, 84%, 32%, 0.15);
             --text-primary: #ffffff;
             --text-secondary: #a1a1aa;
             --text-muted: #71717a;
@@ -97,7 +93,7 @@
             justify-content: center;
             position: relative;
             padding: var(--slide-padding);
-            background: var(--bg-gradient);
+            background: var(--bg-primary);
         }
 
         .slide-content {
@@ -178,7 +174,7 @@
             background: var(--accent);
             color: #1a1a1a;
             padding: clamp(1rem, 2.5vw, 2rem);
-            border-radius: 12px;
+            border-radius: 4px;
             position: relative;
         }
 
@@ -195,7 +191,7 @@
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 10px;
+            border-radius: 2px;
             padding: clamp(0.75rem, 1.5vw, 1.25rem);
             max-width: min(90vw, 1000px);
         }
@@ -230,12 +226,183 @@
             color: var(--accent);
         }
 
-        /* Subtle gradient text */
+        /* Brand accent text */
         .gradient-text {
-            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent);
+        }
+
+        .heading-dim {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .asym-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+            gap: var(--content-gap);
+            align-items: start;
+        }
+
+        .dominant-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 60%;
+        }
+
+        .detail-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--element-gap);
+            padding-top: clamp(0.25rem, 1vw, 0.75rem);
+        }
+
+        .plain-row {
+            padding: clamp(0.6rem, 1.2vw, 0.9rem) 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .plain-row:last-child {
+            border-bottom: 0;
+        }
+
+        .soft-panel {
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            padding: clamp(0.7rem, 1.3vw, 1.05rem);
+        }
+
+        .positioning-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+            gap: var(--content-gap);
+            align-items: start;
+        }
+
+        .positioning-grid {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            border: 1px solid var(--border-subtle);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.005));
+            overflow: hidden;
+        }
+
+        .positioning-grid::before,
+        .positioning-grid::after {
+            content: "";
+            position: absolute;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .positioning-grid::before {
+            width: 1px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+        }
+
+        .positioning-grid::after {
+            height: 1px;
+            width: 100%;
+            left: 0;
+            top: 50%;
+        }
+
+        .axis-label {
+            position: absolute;
+            font-size: var(--small-size);
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .axis-label.x {
+            left: 50%;
+            bottom: 0.35rem;
+            transform: translateX(-50%);
+        }
+
+        .axis-label.y {
+            left: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: left top;
+        }
+
+        .plot-point {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            text-align: center;
+        }
+
+        .plot-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .plot-point.primary .plot-dot {
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            box-shadow: 0 0 0 6px hsla(175, 84%, 32%, 0.2);
+        }
+
+        .plot-name {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.2;
+            max-width: 9ch;
+        }
+
+        .plot-point.primary .plot-name {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .climax-line {
+            font-family: var(--font-display);
+            font-size: clamp(2.1rem, 7vw, 5.2rem);
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-align: center;
+            margin: clamp(0.6rem, 2.2vh, 1.2rem) 0;
+            min-height: 58%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: clamp(0.6rem, 1.6vw, 1.2rem);
+            margin-top: 0.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .contact-item .contact-label {
+            font-size: var(--small-size);
+            color: rgba(26, 26, 26, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 700;
+        }
+
+        .contact-item .contact-value {
+            font-size: var(--body-size);
+            color: #1a1a1a;
+            font-weight: 700;
         }
 
         /* Pill / Tag badge */
@@ -481,7 +648,6 @@
            TITLE SLIDE — Special layout
            =========================================== */
         .title-slide {
-            text-align: center;
             background: radial-gradient(ellipse at 50% 80%, hsla(175, 84%, 32%, 0.08) 0%, transparent 60%),
                 var(--bg-gradient);
         }
@@ -492,7 +658,6 @@
 
         /* CTA / CLOSING slide */
         .closing-slide {
-            text-align: center;
             background: radial-gradient(ellipse at 50% 50%, hsla(175, 84%, 32%, 0.1) 0%, transparent 60%),
                 var(--bg-gradient);
         }
@@ -546,10 +711,6 @@
 
         .justify-center {
             justify-content: center;
-        }
-
-        .text-center {
-            text-align: center;
         }
 
         .w-full {
@@ -666,6 +827,16 @@
             .grid-2,
             .grid-3 {
                 grid-template-columns: 1fr;
+            }
+
+            .asym-layout,
+            .positioning-layout,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .climax-line {
+                min-height: 42%;
             }
         }
 
@@ -815,30 +986,31 @@
          SLIDE 3: THE SOLUTION
          ═══════════════════════════════════════════ -->
     <section class="slide" data-slide="2">
-        <span class="slide-number">02</span>
         <div class="slide-content">
-            <h2 class="reveal gradient-text">The Solution</h2>
-            <p class="reveal mb-md" style="font-size: clamp(0.85rem, 1.5vw, 1.15rem);">
-                Nerdy Network is the private execution system that turns builders into shipped products.
-            </p>
-            <div class="grid-2 reveal">
-                <div class="card" style="border-left: 3px solid var(--accent);">
-                    <h3 class="card-icon"><i data-lucide="zap" class="icon icon-accent"></i> Accountability Mechanics
-                    </h3>
-                    <p class="mt-sm">Public streaks force daily progress</p>
+            <div class="asym-layout">
+                <div class="dominant-copy">
+                    <h2 class="reveal heading-dim">The Solution</h2>
+                    <p class="reveal" style="font-size: clamp(1.2rem, 3.2vw, 2.35rem); line-height: 1.12; color: var(--text-primary); max-width: 18ch;">
+                        Nerdy Network is the private execution system that turns builders into shipped products.
+                    </p>
                 </div>
-                <div class="card" style="border-left: 3px solid var(--accent-secondary);">
-                    <h3 class="card-icon"><i data-lucide="flame" class="icon icon-accent"></i> Streak-Based Building
-                    </h3>
-                    <p class="mt-sm">Visible progress maintains motivation</p>
-                </div>
-                <div class="card" style="border-left: 3px solid var(--accent-alt);">
-                    <h3 class="card-icon"><i data-lucide="home" class="icon icon-alt"></i> House System</h3>
-                    <p class="mt-sm">Belonging and competition drive retention</p>
-                </div>
-                <div class="card" style="border-left: 3px solid var(--accent-alt2);">
-                    <h3 class="card-icon"><i data-lucide="bot" class="icon icon-alt2"></i> AI Team Matching</h3>
-                    <p class="mt-sm">Find compatible cofounders instantly</p>
+                <div class="detail-column reveal">
+                    <div class="plain-row">
+                        <h3 class="card-icon"><i data-lucide="zap" class="icon icon-accent"></i> Accountability Mechanics</h3>
+                        <p class="mt-sm">Public streaks force daily progress</p>
+                    </div>
+                    <div class="plain-row">
+                        <h3 class="card-icon"><i data-lucide="flame" class="icon icon-accent"></i> Streak-Based Building</h3>
+                        <p class="mt-sm">Visible progress maintains motivation</p>
+                    </div>
+                    <div class="plain-row">
+                        <h3 class="card-icon"><i data-lucide="home" class="icon icon-alt"></i> House System</h3>
+                        <p class="mt-sm">Belonging and competition drive retention</p>
+                    </div>
+                    <div class="plain-row">
+                        <h3 class="card-icon"><i data-lucide="bot" class="icon icon-alt2"></i> AI Team Matching</h3>
+                        <p class="mt-sm">Find compatible cofounders instantly</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -850,11 +1022,11 @@
     <section class="slide" data-slide="3">
         <span class="slide-number">03</span>
         <div class="slide-content">
-            <h2 class="reveal gradient-text">Product Architecture</h2>
+            <h2 class="reveal heading-dim">Product Architecture</h2>
             <div class="flex flex-col gap-sm reveal" style="gap: var(--element-gap);">
                 <div class="card flex items-center" style="gap: var(--content-gap);">
                     <div
-                        style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-secondary));display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
+                        style="width:40px;height:40px;border-radius:50%;background: var(--bg-card); border: 1px solid var(--accent); color: var(--accent);display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
                         1</div>
                     <div>
                         <h3>Invite-Only Pitch Rooms</h3>
@@ -863,7 +1035,7 @@
                 </div>
                 <div class="card flex items-center" style="gap: var(--content-gap);">
                     <div
-                        style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-secondary));display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
+                        style="width:40px;height:40px;border-radius:50%;background: var(--bg-card); border: 1px solid var(--accent); color: var(--accent);display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
                         2</div>
                     <div>
                         <h3>Streak-Based Building</h3>
@@ -872,7 +1044,7 @@
                 </div>
                 <div class="card flex items-center" style="gap: var(--content-gap);">
                     <div
-                        style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-secondary));display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
+                        style="width:40px;height:40px;border-radius:50%;background: var(--bg-card); border: 1px solid var(--accent); color: var(--accent);display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
                         3</div>
                     <div>
                         <h3>Houses System</h3>
@@ -881,7 +1053,7 @@
                 </div>
                 <div class="card flex items-center" style="gap: var(--content-gap);">
                     <div
-                        style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-secondary));display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
+                        style="width:40px;height:40px;border-radius:50%;background: var(--bg-card); border: 1px solid var(--accent); color: var(--accent);display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;font-size:var(--body-size);">
                         4</div>
                     <div>
                         <h3>AI Team Matching</h3>
@@ -899,7 +1071,7 @@
     <section class="slide" data-slide="4">
         <span class="slide-number">04</span>
         <div class="slide-content">
-            <h2 class="reveal gradient-text">Why Now</h2>
+            <h2 class="reveal heading-dim">Why Now</h2>
             <p class="reveal" style="font-size: var(--body-size); margin-bottom: var(--content-gap);">Five converging
                 forces make this the perfect moment:</p>
             <div class="flex flex-col reveal" style="gap: var(--element-gap);">
@@ -947,7 +1119,6 @@
          SLIDE 6: MARKET OPPORTUNITY
          ═══════════════════════════════════════════ -->
     <section class="slide" data-slide="5">
-        <span class="slide-number">05</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">Market Opportunity</h2>
             <div class="flex flex-col gap-sm reveal" style="gap: var(--content-gap);">
@@ -956,12 +1127,12 @@
                     <p class="stat" style="color:#1a1a1a;">2.0M</p>
                     <p>High-intent teen &amp; college builders (in $15–25B edtech/GBL market)</p>
                 </div>
-                <div class="card" style="border-left: 3px solid var(--accent-alt);">
+                <div class="soft-panel">
                     <p class="label" style="color: var(--accent-alt);">SAM</p>
                     <p class="stat">800K</p>
                     <p>Builders in English-speaking markets (≈$80M annual potential)</p>
                 </div>
-                <div class="card" style="border-left: 3px solid var(--accent-alt2);">
+                <div class="plain-row" style="padding-top: var(--content-gap);">
                     <p class="label" style="color: var(--accent-alt2);">SOM</p>
                     <p class="stat">150K</p>
                     <p>Year 3 target active builders (≈$10.5M revenue at $70 ARPU)</p>
@@ -974,30 +1145,30 @@
          SLIDE 7: TRACTION & VALIDATION
          ═══════════════════════════════════════════ -->
     <section class="slide" data-slide="6">
-        <span class="slide-number">06</span>
         <div class="slide-content">
-            <h2 class="reveal gradient-text">Traction &amp; Validation</h2>
-            <div class="grid-2 reveal">
-                <div class="card">
+            <h2 class="reveal heading-dim">Traction &amp; Validation</h2>
+            <div class="asym-layout">
+                <div class="accent-card reveal" style="min-height: 64%; display:flex; flex-direction:column; justify-content:center;">
                     <p class="label">WAITLIST</p>
-                    <p class="stat stat-accent">500+</p>
+                    <p class="stat" style="color:#1a1a1a; font-size: clamp(2.8rem, 8vw, 6rem);">500+</p>
                     <p>Signups in 2 weeks · 78% quiz completion · 320 submitted project proof</p>
                 </div>
-                <div class="card">
-                    <p class="label" style="color: var(--accent-alt);">PILOT COHORT</p>
-                    <p class="stat stat-accent">68%</p>
-                    <p>Daily active rate · 42% maintained 14+ day streaks · 3 projects shipped</p>
-                </div>
-                <div class="card">
-                    <p class="label" style="color: var(--accent-alt2);">PARTNERSHIPS</p>
-                    <p class="stat">4</p>
-                    <p>Accelerator programs in discussion · 12 mentors committed · 2 university clubs signed</p>
-                </div>
-                <div class="accent-card">
-                    <p class="label">COMPETITIVE VALIDATION</p>
-                    <p class="stat" style="color:#1a1a1a;">$100M</p>
-                    <p>Buildspace valuation before shutdown · Replit: $1.16B targeting young hackers · Indie Hackers
-                        acquired by Stripe</p>
+                <div class="detail-column reveal">
+                    <div class="soft-panel">
+                        <p class="label" style="color: var(--accent-alt);">PILOT COHORT</p>
+                        <p class="stat stat-accent">68%</p>
+                        <p>Daily active rate · 42% maintained 14+ day streaks · 3 projects shipped</p>
+                    </div>
+                    <div class="plain-row">
+                        <p class="label" style="color: var(--accent-alt2);">PARTNERSHIPS</p>
+                        <p class="stat">4</p>
+                        <p>Accelerator programs in discussion · 12 mentors committed · 2 university clubs signed</p>
+                    </div>
+                    <div class="soft-panel" style="background: hsla(175, 84%, 32%, 0.08); border-color: hsla(175, 84%, 32%, 0.2);">
+                        <p class="label">COMPETITIVE VALIDATION</p>
+                        <p class="stat">$100M</p>
+                        <p>Buildspace valuation before shutdown · Replit: $1.16B targeting young hackers · Indie Hackers acquired by Stripe</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1010,34 +1181,34 @@
     <section class="slide" data-slide="7">
         <span class="slide-number">07</span>
         <div class="slide-content">
-            <h2 class="reveal gradient-text">Business Model</h2>
-            <div class="grid-2 reveal">
-                <div class="card">
-                    <h3>Accelerator Placements</h3>
-                    <p class="stat stat-accent mt-sm">$8K-10K</p>
-                    <p>Scout bounties per placed team</p>
+            <h2 class="reveal heading-dim">Business Model</h2>
+            <div class="asym-layout reveal">
+                <div class="detail-column" style="padding-top: 0;">
+                    <div class="plain-row">
+                        <h3>Accelerator Placements</h3>
+                        <p class="stat stat-accent mt-sm">$8K-10K</p>
+                        <p>Scout bounties per placed team</p>
+                    </div>
+                    <div class="plain-row">
+                        <h3>Sponsored Pitch Rooms</h3>
+                        <p class="stat stat-accent mt-sm">$50K-75K</p>
+                        <p>Per sponsor annually for talent access</p>
+                    </div>
+                    <div class="soft-panel" style="margin-top: var(--element-gap);">
+                        <h3>Premium Cohorts</h3>
+                        <p class="stat stat-accent mt-sm">$750-1K</p>
+                        <p>Per seat for 8-week masterminds</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Sponsored Pitch Rooms</h3>
-                    <p class="stat stat-accent mt-sm">$50K-75K</p>
-                    <p>Per sponsor annually for talent access</p>
-                </div>
-                <div class="card">
-                    <h3>Premium Cohorts</h3>
-                    <p class="stat stat-accent mt-sm">$750-1K</p>
-                    <p>Per seat for 8-week masterminds</p>
-                </div>
-                <div class="card">
+                <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; min-height: 100%; border-top: 2px solid var(--accent-alt2);">
                     <h3>Platform &amp; Pipeline</h3>
                     <p class="stat stat-accent mt-sm">$25K+</p>
                     <p>SaaS subscriptions &amp; recruiter access (Y2+)</p>
+                    <div class="divider"></div>
+                    <p class="label">Revenue Targets</p>
+                    <p class="stat" style="font-size: clamp(1.3rem, 3.1vw, 2.35rem);">$550K <span style="font-size:0.5em;font-weight:400;">Y1 ($55 ARPU)</span> →
+                        $3.0M <span style="font-size:0.5em;font-weight:400;">Y2 ($60 ARPU)</span> → $10.5M <span style="font-size:0.5em;font-weight:400;">Y3 ($70 ARPU)</span></p>
                 </div>
-            </div>
-            <div class="accent-card reveal mt-md" style="text-align:center;">
-                <p class="label">Revenue Targets</p>
-                <p class="stat" style="color:#1a1a1a;">$550K <span style="font-size:0.5em;font-weight:400;">Y1 ($55 ARPU)</span> →
-                    $3.0M <span style="font-size:0.5em;font-weight:400;">Y2 ($60 ARPU)</span> → $10.5M <span
-                        style="font-size:0.5em;font-weight:400;">Y3 ($70 ARPU)</span></p>
             </div>
         </div>
     </section>
@@ -1047,29 +1218,56 @@
          SLIDE 9: COMPETITIVE LANDSCAPE
          ═══════════════════════════════════════════ -->
     <section class="slide" data-slide="8">
-        <span class="slide-number">08</span>
         <div class="slide-content">
-            <h2 class="reveal gradient-text">Competitive Landscape</h2>
-            <div class="flex flex-col gap-sm reveal" style="gap: var(--element-gap);">
-                <div class="card">
-                    <h3>Discord Communities</h3>
-                    <p><span class="fail">✕</span> No accountability, ideas die in threads</p>
-                    <p><span class="win">✓</span> Execution-driven with streaks &amp; public progress</p>
+            <h2 class="reveal heading-dim">Competitive Landscape</h2>
+            <div class="positioning-layout reveal">
+                <div class="positioning-grid">
+                    <span class="axis-label x">Accountability</span>
+                    <span class="axis-label y">Scale</span>
+
+                    <div class="plot-point" style="left: 24%; top: 64%;">
+                        <span class="plot-dot"></span>
+                        <span class="plot-name">Discord Communities</span>
+                    </div>
+                    <div class="plot-point" style="left: 38%; top: 39%;">
+                        <span class="plot-dot"></span>
+                        <span class="plot-name">YC Startup School</span>
+                    </div>
+                    <div class="plot-point" style="left: 56%; top: 53%;">
+                        <span class="plot-dot"></span>
+                        <span class="plot-name">Buildspace</span>
+                    </div>
+                    <div class="plot-point" style="left: 48%; top: 58%;">
+                        <span class="plot-dot"></span>
+                        <span class="plot-name">Indie Hackers</span>
+                    </div>
+                    <div class="plot-point primary" style="left: 79%; top: 28%;">
+                        <span class="plot-dot"></span>
+                        <span class="plot-name">Nerdy Network</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>YC Startup School</h3>
-                    <p><span class="fail">✕</span> Built for company-stage, no team formation</p>
-                    <p><span class="win">✓</span> Teen-focused, gamified, AI matching</p>
-                </div>
-                <div class="card">
-                    <h3>Buildspace</h3>
-                    <p><span class="fail">✕</span> Passive engagement, shutdown 2024</p>
-                    <p><span class="win">✓</span> Retention mechanics, multi-generational networks</p>
-                </div>
-                <div class="card">
-                    <h3>Indie Hackers</h3>
-                    <p><span class="fail">✕</span> Revenue-focused, not teen-appropriate</p>
-                    <p><span class="win">✓</span> Execution-first, accelerator pipeline</p>
+
+                <div class="detail-column" style="padding-top: 0;">
+                    <div class="soft-panel">
+                        <h3>Discord Communities</h3>
+                        <p>No accountability, ideas die in threads</p>
+                        <p class="mt-sm" style="color: var(--text-primary);">Execution-driven with streaks &amp; public progress</p>
+                    </div>
+                    <div class="plain-row">
+                        <h3>YC Startup School</h3>
+                        <p>Built for company-stage, no team formation</p>
+                        <p class="mt-sm" style="color: var(--text-primary);">Teen-focused, gamified, AI matching</p>
+                    </div>
+                    <div class="plain-row">
+                        <h3>Buildspace</h3>
+                        <p>Passive engagement, shutdown 2024</p>
+                        <p class="mt-sm" style="color: var(--text-primary);">Retention mechanics, multi-generational networks</p>
+                    </div>
+                    <div class="soft-panel" style="background: hsla(175, 84%, 32%, 0.1); border-color: hsla(175, 84%, 32%, 0.25);">
+                        <h3>Indie Hackers</h3>
+                        <p>Revenue-focused, not teen-appropriate</p>
+                        <p class="mt-sm" style="color: var(--text-primary);">Execution-first, accelerator pipeline</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1082,7 +1280,7 @@
     <section class="slide" data-slide="9">
         <span class="slide-number">09</span>
         <div class="slide-content">
-            <h2 class="reveal gradient-text">The Team</h2>
+            <h2 class="reveal heading-dim">The Team</h2>
             <div class="accent-card reveal mb-md">
                 <h3>Founder &amp; CEO</h3>
                 <p class="mt-sm">Lived the problem. Built communities. Understands Gen Z builders.</p>
@@ -1115,10 +1313,9 @@
          SLIDE 11: THE ASK
          ═══════════════════════════════════════════ -->
     <section class="slide" data-slide="10">
-        <span class="slide-number">10</span>
         <div class="slide-content">
             <h2 class="reveal gradient-text">The Ask</h2>
-            <div class="accent-card reveal mb-md" style="text-align:center;">
+            <div class="accent-card reveal mb-md">
                 <p class="label">Seed Round</p>
                 <p class="stat" style="color:#1a1a1a;">$1.5M</p>
                 <p>~$86k/mo target burn → 17–18 months runway (extending to ~20mo with early revenue)</p>
@@ -1163,39 +1360,34 @@
          ═══════════════════════════════════════════ -->
     <section class="slide closing-slide" data-slide="11">
         <div class="slide-content" style="align-items:center;">
-            <h2 class="reveal" style="font-size: var(--title-size);">Let's Build the<br><span class="gradient-text">Next
+            <h2 class="reveal heading-dim" style="font-size: var(--title-size);">Let's Build the<br><span class="gradient-text">Next
                     Generation</span></h2>
             <p class="reveal"
                 style="font-size: clamp(0.9rem, 1.6vw, 1.2rem); margin: var(--content-gap) 0; max-width: 600px;">
                 The best founders start young. Most quit before they ship.
             </p>
-            <p class="reveal"
-                style="font-size: clamp(1rem, 2vw, 1.5rem); color: var(--text-primary); font-weight: 700;">
+            <p class="reveal climax-line">
                 We're fixing that.
             </p>
-            <div class="grid-2 reveal" style="margin-top: var(--content-gap); max-width: 700px;">
-                <div class="card text-center">
-                    <p style="color:var(--accent);font-weight:700;">Execution-first</p>
-                    <p>not content-first</p>
-                </div>
-                <div class="card text-center">
-                    <p style="color:var(--accent-alt);font-weight:700;">Accountability-driven</p>
-                    <p>not motivation-driven</p>
-                </div>
-                <div class="card text-center">
-                    <p style="color:var(--accent-alt2);font-weight:700;">Network effects</p>
-                    <p>not broadcast media</p>
-                </div>
-                <div class="card text-center">
-                    <p style="color:var(--accent);font-weight:700;">Transparent reputation</p>
-                    <p>not opaque applications</p>
-                </div>
-            </div>
-            <div class="accent-card reveal"
-                style="margin-top: var(--content-gap); text-align:center; min-width: 280px;">
+            <p class="reveal" style="font-size: var(--small-size); color: var(--text-muted); letter-spacing: 0.03em; text-transform: uppercase; text-align: center; max-width: 900px;">
+                Execution-first not content-first · Accountability-driven not motivation-driven · Network effects not broadcast media · Transparent reputation not opaque applications
+            </p>
+            <div class="accent-card reveal" style="margin-top: var(--element-gap); width: min(880px, 96%);">
                 <p style="margin-bottom: 0.25em;">Join us in building the next generation of founders.</p>
-                <p style="font-weight: 700; font-size: var(--h3-size); color: #1a1a1a;">[Founder Name] · [Email] ·
-                    [Calendar Link]</p>
+                <div class="contact-grid">
+                    <span class="contact-item">
+                        <span class="contact-label">Founder</span>
+                        <span class="contact-value">[Founder Name]</span>
+                    </span>
+                    <span class="contact-item">
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">[Email]</span>
+                    </span>
+                    <span class="contact-item">
+                        <span class="contact-label">Book a Call</span>
+                        <span class="contact-value">[Calendar Link]</span>
+                    </span>
+                </div>
             </div>
         </div>
     </section>

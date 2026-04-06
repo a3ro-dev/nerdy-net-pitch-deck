@@ -6,7 +6,6 @@
 Before making **any** changes to `pitch-deck.html`, you **must** read and follow:
 
 1. **[SKILL.md](./SKILL.md)** — Frontend Slides skill. Contains viewport fitting rules, content density limits, responsive breakpoint requirements, and animation patterns. Every rule in this file is non-negotiable.
-2. **[STYLE_PRESETS.md](./STYLE_PRESETS.md)** — Style presets reference. Contains the Bold Signal theme spec and the mandatory CSS architecture. Follow the viewport fitting checklist before finalizing.
 3. **[pitch-content.txt](./pitch-content.txt)** — The authoritative pitch deck content. All slide text, stats, and facts must come from this file. Do not invent or hallucinate numbers.
 4. **[cmd.txt](./cmd.txt)** — PDF export command and dev server instructions.
 
@@ -87,19 +86,3 @@ The HTML includes `@media print` styles for `Ctrl+P` → Save as PDF as an alter
 
 ---
 
-## Current Slide Structure (12 slides)
-
-| # | Slide | Key Content |
-|---|-------|------------|
-| 1 | Cover | Brand name, tagline, subtitle |
-| 2 | Problem | 50%/71%/66% stats, 4 broken environments |
-| 3 | Solution | 4 pillars: accountability, streaks, houses, AI matching |
-| 4 | Product Architecture | 4 integrated systems with numbered steps |
-| 5 | Why Now | 5 converging forces with icons |
-| 6 | Market Opportunity | TAM $12.1B → SAM $2.8B → SOM $280M |
-| 7 | Traction & Validation | Waitlist, pilot, partnerships, competitive validation |
-| 8 | Business Model | 4 revenue streams + Y1→Y2→Y3 targets |
-| 9 | Competitive Landscape | Discord, YC, Buildspace, Indie Hackers comparison |
-| 10 | Team | Founder + 4 advisors |
-| 11 | The Ask | $1.5M seed, 4-way allocation, Month 12 + 18 milestones |
-| 12 | Closing | Vision grid + CTA |
