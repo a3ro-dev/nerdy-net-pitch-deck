@@ -112,14 +112,10 @@ export function HeroSection() {
 
   return (
     <section id="cover" className="relative min-h-screen flex flex-col justify-center items-start overflow-hidden bg-black">
-      {/* Background video */}
+      {/* Background atmosphere */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay muted loop playsInline aria-hidden="true"
-          className="w-full h-full object-cover object-center opacity-80"
-        >
-          <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bg-hero-0BnFGdr81Ifnj3WbBZoNt1KE4D5DMT.mp4" type="video/mp4" />
-        </video>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(236,168,214,0.24),transparent_35%),radial-gradient(circle_at_75%_25%,rgba(103,232,249,0.12),transparent_32%),radial-gradient(circle_at_55%_80%,rgba(167,139,250,0.12),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(30deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:80px_80px] opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
       </div>

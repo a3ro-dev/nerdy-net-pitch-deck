@@ -98,16 +98,28 @@ export function HowItWorksSection() {
             </h2>
           </div>
 
-          {/* Image cerisier — se colle en bas sur les blocs */}
+          {/* Process loop visual */}
           <div className={`relative h-[320px] lg:h-[640px] overflow-hidden transition-all duration-1000 delay-200 ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}>
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tree-uAia6REvB137CQyHFCf0za3O6h2zKO.png"
-              alt=""
-              aria-hidden="true"
-              className="absolute bottom-0 left-0 w-full h-full object-contain object-bottom"
-            />
+            <div className="absolute inset-6 border border-white/15 bg-white/[0.02] p-6 lg:p-10">
+              <p className="text-xs font-mono text-white/50 mb-8">EXECUTION LOOP</p>
+              <div className="space-y-6">
+                {[
+                  "Pitch intent publicly",
+                  "Maintain daily streak",
+                  "Ship weekly output",
+                  "Unlock mentor feedback",
+                ].map((line, i) => (
+                  <div key={line} className="flex items-center gap-4">
+                    <span className="w-8 h-8 border border-white/20 flex items-center justify-center text-xs font-mono text-white/70">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-sm text-white/70">{line}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
             {/* Fade sur le bord gauche */}
             <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.09_0.01_260)] via-transparent to-transparent pointer-events-none" />
           </div>

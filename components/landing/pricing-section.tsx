@@ -88,15 +88,29 @@ export function PricingSection() {
           </div>
           
           <div className="lg:col-span-5 relative p-0 h-96 lg:h-auto">
-            {/* Whale image */}
+            {/* Revenue composition visual */}
             <div className={`absolute inset-0 pointer-events-none transition-all duration-1000 delay-100 ${
               isVisible ? "opacity-100" : "opacity-0"
             }`}>
-              <img
-                src="/images/whale.png"
-                alt="Organic whale"
-                className="w-full h-full object-contain object-center"
-              />
+              <div className="h-full border border-foreground/10 bg-foreground/[0.02] p-6 lg:p-8">
+                <p className="text-xs font-mono text-muted-foreground mb-6">ANNUAL REVENUE MIX</p>
+                <div className="space-y-4">
+                  {plans.map((plan, idx) => (
+                    <div key={plan.name}>
+                      <div className="flex items-center justify-between text-xs mb-2">
+                        <span className="text-muted-foreground">{plan.name}</span>
+                        <span className="font-mono text-foreground/70">${plan.price.annual.toLocaleString()}</span>
+                      </div>
+                      <div className="h-2 bg-foreground/10">
+                        <div
+                          className={`h-full ${idx === 1 ? "bg-[#eca8d6]" : "bg-foreground/40"}`}
+                          style={{ width: `${Math.max(18, Math.round((plan.price.annual / 75000) * 100))}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
           </div>

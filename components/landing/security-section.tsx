@@ -8,25 +8,25 @@ const moats = [
     icon: Users,
     title: "Network Effects",
     description: "More builders = more diverse skills for matching. More shipped projects = more social proof. More accelerator placements = stronger brand signal. Cross-side: builders attract mentors, mentors attract builders.",
-    image: "/images/isolated.jpg",
+    visual: ["Builders", "Mentors", "Teams", "Placements"],
   },
   {
     icon: Database,
     title: "Data Moat",
     description: "We track what others can't see: daily shipping velocity, streak consistency, collaboration patterns. Creates a unique dataset on early-stage founder potential — predictive signal for accelerators and investors.",
-    image: "/images/encrypted.jpg",
+    visual: ["Velocity", "Streaks", "Collab Graph", "Quality Signal"],
   },
   {
     icon: Award,
     title: "Cultural Moat",
     description: "Identity systems are sticky. Users don't just use Nerdy Network — they belong to a house. Multi-generational culture compounds as alumni mentor new cohorts. Switching costs include losing house and streak history.",
-    image: "/images/audit.jpg",
+    visual: ["Houses", "Lore", "Mentorship", "Reputation"],
   },
   {
     icon: TrendingUp,
     title: "Habit Moat",
     description: "Daily posting becomes reflexive behavior. Builders check in even when they don't want to — peer pressure and loss aversion. Habit formation creates 10x higher retention than passive platforms.",
-    image: "/images/permissions.jpg",
+    visual: ["Daily Loop", "Progress", "Consistency", "Compounding"],
   },
 ];
 
@@ -110,17 +110,20 @@ export function SecuritySection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            {/* Dynamic feature image */}
-            <div className="absolute inset-0 pointer-events-none items-center justify-end hidden lg:flex">
-              {moats.map((moat, index) => (
-                <img
-                  key={moat.image}
-                  src={moat.image}
-                  alt={moat.title}
-                  className="absolute h-3/4 w-3/4 object-contain object-right transition-opacity duration-500"
-                  style={{ opacity: activeFeature === index ? 0.6 : 0 }}
-                />
-              ))}
+            {/* Dynamic moat visual */}
+            <div className="absolute inset-0 pointer-events-none hidden lg:block">
+              <div className="absolute inset-y-0 right-0 w-2/3 bg-gradient-to-l from-[#eca8d6]/12 via-[#eca8d6]/5 to-transparent" />
+              <div className="absolute inset-y-8 right-8 left-1/3 border border-foreground/10 bg-black/20 p-6">
+                <div className="text-xs font-mono text-[#eca8d6] mb-4">LIVE SIGNALS</div>
+                <div className="grid grid-cols-2 gap-3">
+                  {moats[activeFeature].visual.map((item, idx) => (
+                    <div key={item} className="border border-foreground/10 px-3 py-2 text-xs font-mono text-muted-foreground">
+                      <span className="text-foreground/80">{String(idx + 1).padStart(2, "0")}</span>
+                      <span className="ml-2">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div className="relative z-10">

@@ -58,20 +58,26 @@ export function DevelopersSection() {
 
   return (
     <section id="competitive" ref={sectionRef} className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Background image */}
+      {/* Background visual */}
       <div
         className={`absolute bottom-0 right-0 w-[55%] h-[85%] pointer-events-none transition-all duration-1000 delay-300 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
       >
-        <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Upscaled%20Image%20%2813%29-OQ2DiR3ElVsUg8kTvTL1kC5A3Q6maM.png"
-          alt=""
-          aria-hidden="true"
-          className="w-full h-full object-cover object-left-top"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-transparent" />
+        <div className="absolute inset-8 border border-foreground/10 bg-foreground/[0.02] p-6">
+          <p className="text-xs font-mono text-muted-foreground mb-4">PLATFORM REPLACEMENT MAP</p>
+          <div className="space-y-3">
+            {["Passive chat", "Passive course", "Forum browsing", "Institutional bottleneck"].map((item, i) => (
+              <div key={item} className="flex items-center gap-3 text-sm text-muted-foreground">
+                <span className="w-6 text-xs font-mono text-foreground/50">{String(i + 1).padStart(2, "0")}</span>
+                <span className="line-through decoration-foreground/40">{item}</span>
+                <span className="ml-auto text-[#eca8d6]">execution rails</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">

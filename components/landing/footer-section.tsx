@@ -85,13 +85,12 @@ function AnimatedWaveCanvas() {
 export function FooterSection() {
   return (
     <footer className="relative bg-black">
-      {/* Panoramic banner image */}
+      {/* Panoramic system visual */}
       <div className="relative w-full h-[340px] md:h-[420px] overflow-hidden">
-        <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Upscaled%20Image%20%2810%29-UnDKstODkIENp5xqTYUEpt0Sm8tNOw.png"
-          alt="Bioluminescent landscape"
-          className="w-full h-full object-cover object-center"
-        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(236,168,214,0.16),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.08),transparent_35%)]" />
+        <div className="absolute inset-0 opacity-70">
+          <AnimatedWaveCanvas />
+        </div>
         {/* Gradient fade to black at bottom */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black" />
         {/* Subtle dark vignette on sides */}

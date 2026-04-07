@@ -207,17 +207,24 @@ export function FeaturesSection() {
               </div>
             </div>
 
-            {/* Right: mirrored image, full height */}
-            <div className="hidden lg:block relative w-[42%] shrink-0 overflow-hidden">
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Upscaled%20Image%20%2812%29-ng3RrNnsPMJ5CrtOjcPTmhHg01W11q.png"
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover object-center"
-                style={{ transform: "scaleX(-1)" }}
-              />
-              {/* Fade left edge into black */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent" />
+            {/* Right: execution-friction visual */}
+            <div className="hidden lg:block relative w-[42%] shrink-0 overflow-hidden border-l border-foreground/10 bg-gradient-to-b from-[#eca8d6]/10 via-transparent to-transparent">
+              <div className="absolute inset-6 border border-foreground/10 p-5">
+                <p className="text-xs font-mono text-muted-foreground mb-4">FAILURE MODES</p>
+                <div className="space-y-3">
+                  {[
+                    "No accountability loop",
+                    "No social cost for drift",
+                    "No shipping pressure",
+                    "No path to capital",
+                  ].map((item, idx) => (
+                    <div key={item} className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="text-foreground/50 font-mono">{String(idx + 1).padStart(2, "0")}</span>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

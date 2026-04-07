@@ -266,16 +266,26 @@ export function MetricsSection() {
           </div>
         </div>
 
-        {/* Organic graph image */}
+        {/* Organic signal board */}
         <div className={`w-full mb-0 transition-all duration-1000 delay-200 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}>
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/real-time-graph-INFmn3u0MlUwvNPynoIhwxtPaPjxM5.png"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-auto object-cover"
-          />
+          <div className="border border-foreground/10 bg-foreground/[0.02] p-6 lg:p-8">
+            <div className="grid lg:grid-cols-3 gap-6">
+              <div>
+                <p className="text-xs font-mono text-muted-foreground mb-3">TRACTION VELOCITY</p>
+                <DotGraph color="white" height={56} freq1={0.24} freq2={0.08} freqT={0.45} speed={0.016} baseline={0.32} amplitude={0.58} />
+              </div>
+              <div>
+                <p className="text-xs font-mono text-muted-foreground mb-3">ENGAGEMENT CONSISTENCY</p>
+                <DotGraph color="green" height={56} freq1={0.38} freq2={0.14} freqT={0.9} speed={0.028} baseline={0.36} amplitude={0.48} />
+              </div>
+              <div>
+                <p className="text-xs font-mono text-muted-foreground mb-3">PIPELINE HEALTH</p>
+                <DotGraph color="white" height={56} freq1={0.3} freq2={0.11} freqT={0.62} speed={0.02} baseline={0.28} amplitude={0.62} />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Metrics grid */}

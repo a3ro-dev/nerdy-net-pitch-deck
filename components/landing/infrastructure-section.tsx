@@ -71,17 +71,29 @@ export function InfrastructureSection() {
           </span>
 
           <div className="grid lg:grid-cols-[auto_1fr] gap-8 lg:gap-16 items-stretch">
-            {/* Globe image */}
+            {/* Pipeline map visual */}
             <div
               className={`w-48 lg:w-72 xl:w-80 shrink-0 transition-all duration-1000 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/world-3i68QNWJwmO7W19ztZWbevAwJQHzYL.png"
-                alt="Global network sphere"
-                className="w-full h-full object-contain object-center"
-              />
+              <div className="w-full h-full border border-foreground/10 bg-foreground/[0.02] p-4 lg:p-6">
+                <p className="text-xs font-mono text-muted-foreground mb-4">FOUNDER PIPELINE</p>
+                <div className="space-y-3">
+                  {[
+                    "Solo builder",
+                    "Streak performer",
+                    "Team contributor",
+                    "Pitch finalist",
+                    "Funded founder",
+                  ].map((node, idx) => (
+                    <div key={node} className="flex items-center gap-3 text-xs text-muted-foreground">
+                      <span className="w-5 text-[#eca8d6] font-mono">{idx + 1}</span>
+                      <span>{node}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Title */}

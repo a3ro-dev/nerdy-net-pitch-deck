@@ -131,13 +131,21 @@ export function CtaSection() {
                   ))}
                 </div>
 
-                {/* Bridge image */}
-                <div className="mt-6 h-40 overflow-hidden">
-                  <img
-                    src="/images/bridge.png"
-                    alt="Network connections"
-                    className="w-full h-full object-contain object-bottom opacity-60"
-                  />
+                {/* Milestone track visual */}
+                <div className="mt-6 border border-foreground/10 bg-foreground/[0.02] p-4">
+                  <p className="text-xs font-mono text-muted-foreground mb-3">CAPITAL TO OUTCOME TRACK</p>
+                  <div className="space-y-2">
+                    {[
+                      "Month 3: first paid cohorts",
+                      "Month 6: sponsor-backed pitch rooms",
+                      "Month 12: repeatable accelerator pipeline",
+                    ].map((line, idx) => (
+                      <div key={line} className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <span className="w-5 text-[#eca8d6] font-mono">{idx + 1}</span>
+                        <span>{line}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
