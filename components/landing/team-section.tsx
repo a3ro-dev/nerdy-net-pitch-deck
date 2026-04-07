@@ -11,18 +11,20 @@ const visionPoints = [
 
 const teamMembers = [
   {
-    name: "[Founder Name]",
-    title: "Founder & CEO",
+    name: "Aadrika Maurya",
+    title: "Co-Founder & CEO",
+    linkedin: "https://www.linkedin.com/in/aadrika-maurya/",
     description:
-      "We're not observing the problem from outside. We lived it. We're building the network we wish existed when we were 16. We understand the culture, incentives, and dynamics of teenage builders because we were them.",
-    tags: ["Builder community", "Accelerator experience", "Teen startup"],
+      "Launched Nerdy Network at 17 after building across STEM research and community-led programs. RSI India scholar and NYAS finalist, focused on turning young builder ambition into consistent execution.",
+    tags: ["Founder", "Community", "STEM research"],
   },
   {
-    name: "[Co-Founder Name]",
-    title: "Co-Founder",
+    name: "Akshat Singh Kushwaha",
+    title: "Co-Founder & CTO",
+    linkedin: "https://www.linkedin.com/in/akshat-singh-kushwaha/",
     description:
-      "Complementary skills and domain expertise. Deep connection to the mission — this isn't a market research exercise, it's infrastructure born from lived experience.",
-    tags: ["Domain expertise", "Execution", "Mission-driven"],
+      "AI systems builder coding since age 10, with hands-on work across RAG pipelines, LLM fine-tuning, and production engineering in high-school years. Leads technical architecture for reliable, scalable execution infrastructure.",
+    tags: ["AI systems", "Infrastructure", "Engineering"],
   },
 ];
 
@@ -138,13 +140,22 @@ export function TeamSection() {
                 {/* Avatar placeholder */}
                 <div className="w-12 h-12 border border-foreground/20 bg-foreground/[0.04] flex items-center justify-center mb-6">
                   <span className="font-mono text-xs text-muted-foreground">
-                    {member.name.slice(1, 2).toUpperCase()}
+                    {member.name.slice(0, 1).toUpperCase()}
                   </span>
                 </div>
 
                 <h3 className="text-2xl lg:text-3xl font-display mb-1">{member.name}</h3>
                 <span className="text-sm font-mono text-[#eca8d6] block mb-5">{member.title}</span>
                 <p className="text-muted-foreground leading-relaxed mb-6 text-sm">{member.description}</p>
+
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center text-xs font-mono text-[#eca8d6] hover:text-foreground transition-colors mb-6"
+                >
+                  LinkedIn
+                </a>
 
                 <div className="flex flex-wrap gap-2">
                   {member.tags.map((tag) => (
@@ -186,7 +197,7 @@ export function TeamSection() {
           </p>
           <div className="mt-6 flex items-center gap-3">
             <span className="w-8 h-px bg-[#eca8d6]" />
-            <span className="text-sm font-mono text-muted-foreground">[Founder Name], Nerdy Network</span>
+            <span className="text-sm font-mono text-muted-foreground">Aadrika Maurya, Co-Founder & CEO, Nerdy Network</span>
           </div>
         </div>
       </div>
