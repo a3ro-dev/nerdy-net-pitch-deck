@@ -199,6 +199,16 @@ export function TeamSection() {
             <span className="w-8 h-px bg-[#eca8d6]" />
             <span className="text-sm font-mono text-muted-foreground">Aadrika Maurya, Co-Founder & CEO, Nerdy Network</span>
           </div>
+
+          <div className="mt-10 pt-8 border-t border-foreground/10">
+            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl">
+              &ldquo;The next generation won&apos;t wait for permission to build. We&apos;re creating the infrastructure where young founders can find the right teammates, ship faster, and compound real technical momentum from day one.&rdquo;
+            </p>
+            <div className="mt-5 flex items-center gap-3">
+              <span className="w-8 h-px bg-[#eca8d6]" />
+              <span className="text-sm font-mono text-muted-foreground">Akshat Singh Kushwaha, Co-Founder & CTO, Nerdy Network</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
